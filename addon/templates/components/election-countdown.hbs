@@ -1,0 +1,43 @@
+{{#if (is-between electionDayStart electionDayEnd)}}
+
+  <div class="election-countdown__header">Election Day is Today!</div>
+  <div class="election-countdown__share-voting-issues">
+    + <a href="#">Share Voting Issues</a>
+  </div>
+  <div class="election-countdown__find-polling-places">
+    + <a href="#">Find Polling Place</a>
+  </div>
+
+{{else if (is-after electionDayEnd)}}
+
+  <div class="election-countdown__header">Ready for the Next Election?</div>
+  <div class="election-countdown__share-your-experience">
+    + <a href="#">Share Your Experience</a>
+  </div>
+  <div class="election-countdown__look-up-results">
+    + <a href="#">Look Up Results</a>
+  </div>
+
+{{else}}
+
+  <div class="election-countdown__left">
+    <div class="election-countdown__cal">
+      {{calendar-icon}}
+      <div class="election-countdown__cal__diff">{{diff}}</div>
+    </div>
+    <div class="election-countdown__header">
+      {{if (is-before electionDayEveStart) "Days" "Day"}} until the Election
+    </div>
+  </div>
+
+  <div class="election-countdown__right">
+    <div class="election-countdown__add-to-cal">
+      + <a href="#">Add to Cal</a>
+    </div>
+    <div class="election-countdown__get-updates">
+      + <a href="#">Get Updates</a>
+    </div>
+  </div>
+
+{{/if}}
+
