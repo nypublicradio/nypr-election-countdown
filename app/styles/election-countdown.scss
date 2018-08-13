@@ -1,7 +1,7 @@
 $base-font: 16;
 $line-height: 24;
 $font-montserrat: 'Montserrat', sans-serif;
-$font-opensans: 'OpenSans', sans-serif;
+$font-opensans: 'Open Sans', sans-serif;
 
 $col-azul: #1e66de;
 $col-azure: #128cf4;
@@ -20,6 +20,12 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+%countdown-col {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
 .election-countdown {
   background-color: $col-azul;
   color: $col-white;
@@ -32,14 +38,16 @@ html {
   }
 
   &__left {
-    width: 50%;
-    text-align: right;
-    display: flex;
+    @extend %countdown-col;
   }
 
   &__right {
-    width: 50%;
-    text-align: left;
+    @extend %countdown-col;
+    justify-content: flex-end;
+
+    > div {
+      margin-left: 24px;
+    }
   }
 
   &__cal {
@@ -59,7 +67,8 @@ html {
       position: relative;
       z-index: 1;
       text-align: center;
-      margin-top: 20px;
+      margin-top: 15px;
+      font-size: 2.2rem;
     }
   }
 

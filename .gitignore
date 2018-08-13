@@ -8,6 +8,11 @@
 /bower_components/
 /node_modules/
 
+# ignore emacs and vim tmp files
+.*.*.sw*
+\#*\#
+*~
+
 # misc
 /.sass-cache
 /connect.lock
