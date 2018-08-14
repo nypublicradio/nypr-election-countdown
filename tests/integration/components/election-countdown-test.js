@@ -3,24 +3,31 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
+import moment from 'moment';
+
+const TIMEZONE = 'America/New_York';
+
 module('Integration | Component | election-countdown', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  test('usage', async function(assert) {
+    const NOW = moment().tz(TIMEZONE); // today
+    const ONE_YEAR_FROM_NOW = NOW.clone().add(1, 'year');
 
-    await render(hbs`{{election-countdown}}`);
+    this.set('from', NOW);
+    this.set('to', ONE_YEAR_FROM_NOW);
 
-    assert.equal(this.element.textContent.trim(), '');
+    await render(hbs`{{election-countdown from=from to=to unit='days'}}`);
+    assert.dom('.election-countdown').hasText('365 Days until Midterms + Add to Cal + Get Updates');
 
-    // Template block usage:
-    await render(hbs`
-      {{#election-countdown}}
-        template block text
-      {{/election-countdown}}
-    `);
+    this.set('to', NOW.clone().add(1, 'days'));
+    this.set('electionDayEveStart', ONE_YEAR_FROM_NOW);
+    await render(hbs`{{election-countdown from=from to=to unit='days'}}`);
+    assert.dom('.election-countdown').hasText('1 Days until Midterms + Add to Cal + Get Updates');
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    this.set('to', NOW.clone());
+    await render(hbs`{{election-countdown from=from to=to unit='days'}}`);
+    assert.dom('.election-countdown').hasText('0 Days until Midterms + Add to Cal + Get Updates');
+
   });
 });
