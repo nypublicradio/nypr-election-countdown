@@ -1,7 +1,8 @@
 nypr-election-countdown
 ==============================================================================
 
-[Short description of the addon.]
+Provides a {{election-countdown}} component that calculates the time remaining
+until election day and renders the appropriate HTML.
 
 Installation
 ------------------------------------------------------------------------------
@@ -14,7 +15,7 @@ ember install nypr-election-countdown
 Usage
 ------------------------------------------------------------------------------
 
-[Longer description of how to use the addon in apps.]
+See https://nypublicradio.github.io/nypr-election-countdown for more.
 
 
 Contributing
