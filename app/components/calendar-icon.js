@@ -1,1 +1,0 @@
-export { default } from 'nypr-election-countdown/components/calendar-icon';
