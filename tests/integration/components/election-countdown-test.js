@@ -21,31 +21,34 @@ module('Integration | Component | election-countdown', function(hooks) {
         from=from
         to=to
         unit='days'
-        electionDayStart=ONE_YEAR_FROM_NOW
+        electionDayStart=to
       }}
     `);
     assert.dom('.election-countdown').hasText('365 Days until Midterms + Add to Cal + Get Updates');
 
     this.set('to', NOW.clone().add(1, 'days'));
+    this.set('electionDayEveStart', NOW.clone().subtract(1, 'days'))
     await render(hbs`
       {{election-countdown
         from=from
         to=to
         unit='days'
-        electionDayEveStart=NOW.clone().subtract(1, 'days')
+        electionDayEveStart=electionDayEveStart
         electionDayStart=to
       }}
     `);
     assert.dom('.election-countdown').hasText('1 Day until Midterms + Add to Cal + Get Updates');
 
     this.set('to', NOW.clone().subtract(1, 'hours'));
+    this.set('electionDayStart', NOW.clone().subtract(1, 'days'))
+    this.set('electionDayEnd', NOW.clone().add(2, 'days'))
     await render(hbs`
       {{election-countdown
         from=from
         to=to
         unit='days'
-        electionDayStart=NOW.clone().subtract(1, 'days')
-        electionDayEnd=NOW.clone().add(2, 'days')
+        electionDayStart=electionDayStart
+        electionDayEnd=electionDayEnd
       }}
     `);
     assert.dom('.election-countdown').hasText('Election Day is Today! + Share Voting Issues + Find Polling Place');
