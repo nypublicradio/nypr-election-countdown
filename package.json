@@ -1,6 +1,6 @@
 {
   "name": "nypr-election-countdown",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
     "ember-addon"
@@ -17,15 +17,20 @@
     "lint:js": "eslint .",
     "start": "ember serve",
     "test": "ember test",
-    "test:all": "ember try:each"
+    "test:all": "ember try:each",
+    "cal": "node -r dotenv/config scripts/cal.js"
   },
   "dependencies": {
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^2.0.1",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.20",
     "nypr-countdown": "^0.1.0"
   },
   "devDependencies": {
+    "aws-sdk": "^2.257.1",
     "broccoli-asset-rev": "^2.7.0",
+    "dotenv": "^6.0.0",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~3.2.0",
     "ember-cli-dependency-checker": "^2.0.0",
@@ -33,6 +38,7 @@
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-moment-shim": "^3.7.1",
     "ember-cli-qunit": "^4.3.2",
     "ember-cli-sass": "^7.1.7",
     "ember-cli-shims": "^1.2.0",
@@ -42,15 +48,17 @@
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-moment": "^7.7.0",
     "ember-resolver": "^4.0.0",
     "ember-source": "~3.2.0",
     "ember-source-channel-url": "^1.0.1",
     "ember-try": "^0.2.23",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^6.0.1",
+    "ical-generator": "^0.2.10",
+    "include-media": "^1.4.9",
     "loader.js": "^4.2.3",
-    "qunit-dom": "^0.6.2",
-    "nypr-countdown": "^0.1.0"
+    "qunit-dom": "^0.6.2"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"

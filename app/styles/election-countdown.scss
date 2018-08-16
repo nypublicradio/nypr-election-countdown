@@ -1,16 +1,4 @@
-$base-font: 16;
-$line-height: 24;
-$font-montserrat: 'Montserrat', sans-serif;
-$font-opensans: 'OpenSans', sans-serif;
-
-$col-azul: #1e66de;
-$col-azure: #128cf4;
-$col-black: #333;
-$col-lipstick: #de1e3d;
-$col-warm-grey: #888;
-$col-white: #fff;
-$col-white-two: #f8f8f8;
-$col-white-three: #ddd;
+@import 'vars';
 
 html {
   font-size: 62.5%; // make it so we can use base-10 rems
@@ -23,49 +11,50 @@ html {
 .election-countdown {
   background-color: $col-azul;
   color: $col-white;
-  font-size: 1.4rem;
   display: flex;
-  padding: 8px 16px;
+  font-size: 1.4rem;
+  padding: 16px;
+  text-align: left;
+  height: 70px;
 
   a {
     color: $col-white;
   }
 
   &__left {
-    width: 50%;
-    text-align: right;
+    align-items: center;
     display: flex;
+    font-family: $font-montserrat;
+    font-size: 1.6rem;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.38;
+    width: 60%;
+
+    @include media('>=medium') {
+      width: 50%;
+    }
   }
 
   &__right {
-    width: 50%;
-    text-align: left;
+    line-height: 1.57;
+    width: 40%;
+
+    > div {
+      margin-left: 24px;
+    }
+
+    @include media('>=medium') {
+      align-items: center;
+      display: flex;
+      justify-content: flex-end;
+      width: 50%;
+    }
   }
 
-  &__cal {
-    color: $col-azul;
-    font-weight: 600;
-    font-size: 1.8rem;
-    height: 56px;
-    width: 56px;
+  &__diff {
+    font-size: 4.4rem;
+    line-height: .5;
     margin-right: 16px;
-
-    &__icon {
-      position: absolute;
-      z-index: 0;
-    }
-
-    &__diff {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      margin-top: 20px;
-    }
-  }
-
-  &__header {
-    font-family: $font-montserrat;
-    font-style: italic;
-    font-weight: 600;
   }
 }

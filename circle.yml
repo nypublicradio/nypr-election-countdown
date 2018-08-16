@@ -1,0 +1,107 @@
+version: 2
+
+node_key: &node_key
+  key: node-deps-{{ arch }}-{{ checksum "yarn.lock" }}
+
+restore_node: &restore_node
+  restore_cache:
+    <<: *node_key
+
+install_node: &install_node
+  run:
+    name: node deps
+    command: |
+      if [ ! -d node_modules ]; then
+        yarn --pure-lockfile
+      fi
+
+save_node: &save_node
+  save_cache:
+    <<: *node_key
+    paths:
+      - node_modules
+
+container_defaults: &defaults
+  docker:
+    - image: circleci/node:8.7-browsers
+      environment:
+        JOBS: 2
+
+jobs:
+  install:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - <<: *restore_node
+      - <<: *install_node
+      - <<: *save_node
+
+  test:
+    <<: *defaults
+
+    steps:
+      - checkout
+      - <<: *restore_node
+      - run: npx ember test
+
+  calendar-demo:
+    <<: *defaults
+    steps:
+      - checkout
+      - <<: *restore_node
+      - run: AWS_BUCKET=$DEMO_AWS_BUCKET npm run cal
+
+  calendar-prod:
+    <<: *defaults
+    steps:
+      - checkout
+      - <<: *restore_node
+      - run: AWS_BUCKET=$PROD_AWS_BUCKET npm run cal
+
+workflows:
+  version: 2
+  just-test:
+    jobs:
+      - install:
+          filters:
+            branches:
+              ignore: master
+      - test:
+          requires:
+            - install
+
+  deploy-demo:
+    jobs:
+      - install:
+          filters:
+            branches:
+              only: master
+      - test:
+          requires:
+            - install
+      - calendar-demo:
+          requires:
+            - install
+
+  deploy-prod:
+    jobs:
+      - install:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /v[0-9]+\.[0-9]+\.[0-9]+/
+      - test:
+          requires:
+            - install
+          filters:
+            tags:
+              only: /v[0-9]+\.[0-9]+\.[0-9]+/
+
+      - calendar-prod:
+          requires:
+            - install
+          filters:
+            tags:
+              only: /v[0-9]+\.[0-9]+\.[0-9]+/

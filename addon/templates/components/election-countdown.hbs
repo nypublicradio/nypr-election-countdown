@@ -18,24 +18,21 @@
     + <a href="#">Look Up Results</a>
   </div>
 
-{{else}}
+{{else if (is-before electionDayStart)}}
 
   <div class="election-countdown__left">
-    <div class="election-countdown__cal">
-      {{calendar-icon}}
-      <div class="election-countdown__cal__diff">{{diff}}</div>
-    </div>
+    <div class="election-countdown__diff">{{diff}}</div>
     <div class="election-countdown__header">
-      {{if (is-before electionDayEveStart) "Days" "Day"}} until the Election
+      {{if (is-before electionDayEveStart) "Days" "Day"}} until Midterms
     </div>
   </div>
 
   <div class="election-countdown__right">
     <div class="election-countdown__add-to-cal">
-      + <a href="#">Add to Cal</a>
+      + <a href="{{calendarLink}}" download="Midterm Elections 2018 calendar event">Add to Cal</a>
     </div>
     <div class="election-countdown__get-updates">
-      + <a href="#">Get Updates</a>
+      + <a href="/opt-in">Get Updates</a>
     </div>
   </div>
 

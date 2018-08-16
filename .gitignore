@@ -8,6 +8,18 @@
 /bower_components/
 /node_modules/
 
+# ignore emacs and vim tmp files
+.*.*.sw*
+\#*\#
+*~
+
+# keep production keys out of repo
+.env
+.env.*
+.env.deploy.*
+!.env.sample
+!.env.deploy.sample
+
 # misc
 /.sass-cache
 /connect.lock
@@ -21,3 +33,5 @@
 /.node_modules.ember-try/
 /bower.json.ember-try
 /package.json.ember-try
+
+midterms.ics
