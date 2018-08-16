@@ -45,21 +45,53 @@ jobs:
       - <<: *restore_node
       - run: npx ember test
 
-  calendar:
+  calendar-demo:
     <<: *defaults
     steps:
       - checkout
       - <<: *restore_node
-      - run: npm run cal
+      - run: AWS_PREFIX=$DEMO_AWS_PREFIX npm run cal
+
+  calendar-prod:
+    <<: *defaults
+    steps:
+      - checkout
+      - <<: *restore_node
+      - run: AWS_PREFIX=$PROD_AWS_PREFIX npm run cal
 
 workflows:
   version: 2
-  just-test:
+  deploy-demo:
     jobs:
-      - install
+      - install:
+          filters:
+            branches:
+              only: master
       - test:
           requires:
             - install
-      - calendar:
+      - calendar-demo:
           requires:
             - install
+
+  deploy-prod:
+    jobs:
+      - install:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /v[0-9]+\.[0-9]+\.[0-9]+/
+      - test:
+          requires:
+            - install
+          filters:
+            tags:
+              only: /v[0-9]+\.[0-9]+\.[0-9]+/
+
+      - calendar-prod:
+          requires:
+            - install
+          filters:
+            tags:
+              only: /v[0-9]+\.[0-9]+\.[0-9]+/
