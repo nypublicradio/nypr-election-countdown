@@ -37,7 +37,7 @@ function uploadToS3(string, filename) {
   return s3.putObject({
     Body,
     Bucket: process.env.AWS_BUCKET,
-    Key: `/assets/${filename}`,
+    Key: `assets/${filename}`,
     ACL: 'public-read',
     ContentType: 'text/calendar',
     ContentEncoding: 'gzip',
