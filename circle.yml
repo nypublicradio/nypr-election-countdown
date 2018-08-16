@@ -45,11 +45,21 @@ jobs:
       - <<: *restore_node
       - run: npx ember test
 
+  calendar:
+    <<: *defaults
+    steps:
+      - checkout
+      - <<: *restore_node
+      - run: npm run cal
+
 workflows:
   version: 2
   just-test:
     jobs:
       - install
       - test:
+          requires:
+            - install
+      - calendar:
           requires:
             - install

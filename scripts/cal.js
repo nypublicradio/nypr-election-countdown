@@ -9,6 +9,7 @@ const moment = require('moment-timezone');
 const ical = require('ical-generator');
 
 const s3 = new aws.S3();
+const CAL_CONTENT = 'Midterm Elections 2018'
 
 moment.tz.setDefault('America/New_York');
 
@@ -36,7 +37,7 @@ function uploadToS3(string, filename) {
   return s3.putObject({
     Body,
     Bucket: process.env.AWS_BUCKET,
-    Key: `${process.env.AWS_PREFIX}/assets/${filename}`,
+    Key: `/assets/${filename}`,
     ACL: 'public-read',
     ContentType: 'text/calendar',
     ContentEncoding: 'gzip',
@@ -46,7 +47,7 @@ function uploadToS3(string, filename) {
 
 function main() {
   const filename = `${process.env.CAL_FILENAME || 'midterms'}.ics`;
-  const cal = createICal(process.env.CAL_CONTENT);
+  const cal = createICal(CAL_CONTENT);
   writeOut(cal.toString(), filename);
   console.log(filename, 'written to cwd'); // eslint-disable-line
   uploadToS3(cal.toString(), filename)
