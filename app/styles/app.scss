@@ -1,4 +1,4 @@
-@import "mixins/fonts";
+@import 'fonts';
 
 // extra small < 360px
 $small: 360px;
@@ -6,6 +6,6 @@ $medium: 1024px;
 $large: 1440px;
 $breakpoints: (small: $small, medium: $medium, large: $large);
 
-@import "_include-media";
+@import '_include-media';
 
 @import 'election-countdown';

@@ -17,7 +17,7 @@ Usage
 
 Inline usage:
 
-{{election-countdown unit='days' from=from to='2018-11-06T06:00:00-5:00'}}
+`{{election-countdown unit='days' from=from to='2018-11-06T06:00:00-5:00'}}`
 
 The `from` param defaults to now if excluded. You can use `moment()` or String
 values for the `from` and `to` params. If you use Strings, they
