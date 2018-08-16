@@ -50,14 +50,14 @@ jobs:
     steps:
       - checkout
       - <<: *restore_node
-      - run: AWS_PREFIX=$DEMO_AWS_PREFIX npm run cal
+      - run: AWS_BUCKET=$DEMO_AWS_BUCKET npm run cal
 
   calendar-prod:
     <<: *defaults
     steps:
       - checkout
       - <<: *restore_node
-      - run: AWS_PREFIX=$PROD_AWS_PREFIX npm run cal
+      - run: AWS_BUCKET=$PROD_AWS_BUCKET npm run cal
 
 workflows:
   version: 2
