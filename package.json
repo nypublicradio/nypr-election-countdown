@@ -23,6 +23,8 @@
   "dependencies": {
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^2.0.1",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.20",
     "nypr-countdown": "^0.1.0"
   },
   "devDependencies": {
@@ -56,8 +58,6 @@
     "ical-generator": "^0.2.10",
     "include-media": "^1.4.9",
     "loader.js": "^4.2.3",
-    "moment": "^2.22.2",
-    "moment-timezone": "^0.5.20",
     "qunit-dom": "^0.6.2"
   },
   "engines": {
