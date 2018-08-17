@@ -11,6 +11,24 @@ Installation
 ember install nypr-election-countdown
 ```
 
+Add timezone configuration to your app's `config/environment.js`:
+```
+module.exports = function(environment) {
+  let ENV = {
+
+    ...
+
+    moment: {
+      includeTimezone: 'all'
+    },
+
+    ...
+
+  }
+
+  return ENV;
+};
+```
 
 Usage
 ------------------------------------------------------------------------------

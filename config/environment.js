@@ -1,5 +1,11 @@
 'use strict';
 
-module.exports = function(/* environment, appConfig */) {
-  return { };
+module.exports = function(environment) {
+  let ENV = {
+    APP: {
+      calendarLink: '/assets/midterms.ics',
+    }
+  };
+
+  return ENV;
 };
