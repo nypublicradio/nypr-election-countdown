@@ -1,22 +1,26 @@
 {{#if (is-between electionDayStart electionDayEnd)}}
 
   <div class="election-countdown__header">Election Day is Today!</div>
-  <div class="election-countdown__share-voting-issues">
-    + <a href="#">Share Voting Issues</a>
-  </div>
-  <div class="election-countdown__find-polling-places">
-    + <a href="#">Find Polling Place</a>
-  </div>
+  {{#unless promo}}
+    <div class="election-countdown__share-voting-issues">
+      + <a href="#">Share Voting Issues</a>
+    </div>
+    <div class="election-countdown__find-polling-places">
+      + <a href="#">Find Polling Place</a>
+    </div>
+  {{/unless}}
 
 {{else if (is-after electionDayEnd)}}
 
   <div class="election-countdown__header">Ready for the Next Election?</div>
-  <div class="election-countdown__share-your-experience">
-    + <a href="#">Share Your Experience</a>
-  </div>
-  <div class="election-countdown__look-up-results">
-    + <a href="#">Look Up Results</a>
-  </div>
+  {{#unless promo}}
+    <div class="election-countdown__share-your-experience">
+      + <a href="#">Share Your Experience</a>
+    </div>
+    <div class="election-countdown__look-up-results">
+      + <a href="#">Look Up Results</a>
+    </div>
+  {{/unless}}
 
 {{else if (is-before electionDayStart)}}
 
@@ -27,14 +31,16 @@
     </div>
   </div>
 
-  <div class="election-countdown__right">
-    <div class="election-countdown__add-to-cal">
-      + <a href="{{calendarLink}}" download="Midterm Elections 2018 calendar event">Add to Cal</a>
+  {{#unless promo}}
+    <div class="election-countdown__right">
+      <div class="election-countdown__add-to-cal">
+        + <a href="{{calendarLink}}" download="Midterm Elections 2018 calendar event">Add to Cal</a>
+      </div>
+      <div class="election-countdown__get-updates">
+        + {{#link-to 'opt-in'}}Get Updates{{/link-to}}
+      </div>
     </div>
-    <div class="election-countdown__get-updates">
-      + <a href="/opt-in">Get Updates</a>
-    </div>
-  </div>
+  {{/unless}}
 
 {{/if}}
 
