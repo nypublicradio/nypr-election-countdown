@@ -12,7 +12,7 @@
     "doc": "doc",
     "test": "tests"
   },
-  "bin": "npm run cal",
+  "bin": "scripts/cal.js",
   "scripts": {
     "build": "ember build",
     "lint:js": "eslint .",
