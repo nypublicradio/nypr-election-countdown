@@ -20,7 +20,11 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+    publisherAPI: 'https://api.demo.nypr.digital/api',
+    platformEventsAPI: 'https://api.demo.nypr.digital/analytics',
+    webRoot: 'https://wnyc.demo2.wnyc.net',
+    adminRoot: 'https://internal.demo2.wnyc.net',
   };
 
   if (environment === 'development') {
@@ -29,6 +33,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV['ember-cli-mirage'] = {enabled: false};
   }
 
   if (environment === 'test') {
@@ -44,7 +49,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
+    ENV.rootURL = '/nypr-election-countdown';
+    ENV.locationType = 'hash';
   }
 
   return ENV;
