@@ -16,6 +16,7 @@ html {
   padding: 16px;
   text-align: left;
   height: 70px;
+  max-width: 680px;
 
   a {
     color: $col-white;
@@ -26,7 +27,6 @@ html {
     display: flex;
     font-family: $font-montserrat;
     font-size: 1.6rem;
-    font-style: italic;
     font-weight: 600;
     line-height: 1.38;
     width: 60%;
