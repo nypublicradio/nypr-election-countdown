@@ -12,9 +12,7 @@
     "doc": "doc",
     "test": "tests"
   },
-  "bin": {
-    "cal": "node -r dotenv/config scripts/cal.js"
-  },
+  "bin": "npm run cal",
   "scripts": {
     "build": "ember build",
     "lint:js": "eslint .",
