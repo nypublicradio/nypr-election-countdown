@@ -1,5 +1,8 @@
 # nypr-election-countdown Changelog
 
+## 0.1.3
+- [CHORE] puts dotenv into dependencies
+
 ## 0.1.2
 - [ENHANCEMENT] Make scripts/cal.js accessible in the consuming app
 
