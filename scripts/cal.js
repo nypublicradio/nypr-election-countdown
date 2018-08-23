@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+require('dotenv').config()
+
 const fs = require('fs');
 const path = require('path');
 const zlib = require('zlib');
@@ -15,7 +17,6 @@ const CAL_FILENAME = `${process.env.CAL_FILENAME || 'midterms'}.ics`;
 const CAL_FILEPATH = `assets/${CAL_FILENAME}`;
 
 moment.tz.setDefault('America/New_York');
-require('dotenv').config()
 
 function createICal(content) {
   content = content || '';
