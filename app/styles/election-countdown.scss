@@ -1,22 +1,24 @@
 @import 'vars';
+@import 'fonts';
 
-html {
-  font-size: 62.5%; // make it so we can use base-10 rems
-  font-family: $font-opensans;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+// extra small < 360px
+$small: 360px;
+$medium: 1024px;
+$large: 1440px;
+$breakpoints: (small: $small, medium: $medium, large: $large);
+
+@import '_include-media';
 
 .election-countdown {
   background-color: $col-azul;
   color: $col-white;
-  display: flex;
   font-size: 1.4rem;
   padding: 16px;
   text-align: left;
   height: 70px;
-  max-width: 680px;
+
+  display: flex;
+  justify-content: space-between;
 
   a {
     color: $col-white;
@@ -29,26 +31,16 @@ html {
     font-size: 1.6rem;
     font-weight: 600;
     line-height: 1.38;
-    width: 60%;
-
-    @include media('>=medium') {
-      width: 50%;
-    }
   }
 
   &__right {
     line-height: 1.57;
-    width: 40%;
-
-    > div {
-      margin-left: 24px;
-    }
+    flex-shrink: 0;
 
     @include media('>=medium') {
-      align-items: center;
       display: flex;
+      align-items: center;
       justify-content: flex-end;
-      width: 50%;
     }
   }
 
