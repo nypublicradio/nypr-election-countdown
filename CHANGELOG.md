@@ -1,6 +1,6 @@
 # nypr-election-countdown Changelog
 
-## 0.1.4
+## 0.1.5
 - [CHORE] UI tweaks
 
 ## 0.1.3
