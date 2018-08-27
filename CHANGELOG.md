@@ -1,5 +1,8 @@
 # nypr-election-countdown Changelog
 
+## 0.1.4
+- [CHORE] UI tweaks
+
 ## 0.1.3
 - [CHORE] puts dotenv into dependencies
 
