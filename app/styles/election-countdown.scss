@@ -49,4 +49,10 @@ $breakpoints: (small: $small, medium: $medium, large: $large);
     line-height: .5;
     margin-right: 16px;
   }
+
+  &__get-updates, &__find-polling-places, &__look-up-results {
+    @include media('>=medium') {
+      margin-left: 20px;
+    }
+  }
 }
