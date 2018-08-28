@@ -1,28 +1,14 @@
-Opt In Component Boilerplate
+<p class="opt-in__opt-in-tease">essential politics coverage from
+  WNYC and Gothamist</p>
 
-<h1 class="opt-in__header"><span>Sign Up for Updates</span></h1>
-<p class="opt-in__subheader">Get the latest updates via Email Lorem Ips Lorem Ipsum Dolor</p>
+{{#if phoneSuccess}}
+  <div class="opt-in__both-success" data-test-both-success>
+    <p><b>Thanks for subscribing to our Newsletter and SMS updates</b></p>
+    <p>If you change your mind,  turn SMS notifications off at any time by texting “STOP” to 7777. </p>
+  </div>
+{{/if}}
 
-<p class="opt-in__success-text">
-  {{#if (and emailSuccess (not phoneSuccess))}}
-    <p data-test-email-success><b>Thanks for subscribing to our Newsletter</b></p>
-    <p>Don’t forget you can also get text notifications! Turn them off at any time by texting “STOP” to 7777.</p>
-  {{/if}}
-
-  {{#if (and phoneSuccess (not emailSuccess))}}
-    <p data-test-sms-success><b>Thanks for subscribing to SMS Updates</b></p>
-    <p>Don’t forget you can also sign up to get Newsletter updates with the latest and greatest below.</p>
-  {{/if}}
-
-  {{#if (and phoneSuccess emailSuccess)}}
-    <div class="opt-in__both-success" data-test-both-success>
-      <p><b>Thanks for subscribing to our Newsletter and SMS updates</b></p>
-      <p>If you change your mind,  turn SMS notifications off at any time by texting “STOP” to 7777. </p>
-    </div>
-  {{/if}}
-</p>
-
-{{#if (not isFullFormSubmitted)}}
+{{#if (not emailSuccess)}}
   <form {{action 'submitForms' on='submit'}}>
     <div class="opt-in__formset">
       {{#if (not emailSuccess)}}
@@ -37,26 +23,11 @@ Opt In Component Boilerplate
           }}
         </div>
       {{/if}}
-
-      {{#if (not phoneSuccess)}}
-        <div class="opt-in__phone-form opt-in__form">
-          {{nypr-input
-          data-test-phone-input
-          type='tel'
-          fieldname='signupPhoneNumber'
-          placeholder='Phone Number'
-          value=changeset.phone
-          errors=(or changeset.error.phone.validation phoneResponseErrors)
-          class=(concat "opt-in__phone-input " (if submitPhone.isRunning 'is-loading'))
-          }}
-        </div>
-      {{/if}}
     </div>
 
     <p class="opt-in__legal-checkbox">
       {{input id="optin_legal" type="checkbox" name="legalChecked" checked=changeset.legalChecked}}
-      <label data-test-legal-checkbox for="optin_legal">By submitting your information, you're agreeing to receive communications
-        from New York Public Radio in accordance with our <a href="https://www.wnyc.org/terms/" target="_blank">Terms of Use</a>.</label>
+      <label data-test-legal-checkbox for="optin_legal">I agree to the New York Public Radio <a href="https://www.wnyc.org/terms/" target="_blank">Terms</a>.</label>
     </p>
 
     <button class="opt-in__submit-button" type="submit" disabled={{isSubmitButtonDisabled}} data-test-submit-button>

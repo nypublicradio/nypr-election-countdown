@@ -16,8 +16,7 @@ import {
 let newsletterEndpoint = `${config.optInAPI}/mailchimp`;
 let smsEndpoint = `${config.optInAPI}/mobile-commons`;
 let validations = {
-  email: validateFormat({ type: "email", allowBlank: true }),
-  phone: validateFormat({ type: "phone", allowBlank: true }),
+  email: validateFormat({ type: "email"}),
   legalChecked: validatePresence(true)
 };
 
@@ -25,14 +24,12 @@ export default Component.extend({
   layout,
   classNames: ["opt-in"],
   emailResponseErrors: null,
-  phoneResponseErrors: null,
 
   init() {
     this._super(...arguments);
     this.changeset = new Changeset(
       {
         email: null,
-        phone: null,
         legalChecked: false
       },
       lookupValidator(validations),
@@ -42,15 +39,13 @@ export default Component.extend({
   },
 
   isSubmitButtonDisabled: computed(
-    "changeset.{email,phone,legalChecked}",
+    "changeset.{email,legalChecked}",
     function() {
       return !(
-        (this.get("changeset.email") || this.get("changeset.phone")) &&
-        this.get("changeset.legalChecked")
+        this.get("changeset.email") && this.get("changeset.legalChecked")
       );
     }
   ),
-  isFullFormSubmitted: and("phoneSuccess", "emailSuccess"),
   signUpButtonText: computed("phoneSuccess", "emailSuccess", function() {
     if (this.get("phoneSuccess") && !this.get("emailSuccess")) {
       return "Subscribe to the Newsletter";
@@ -99,12 +94,6 @@ export default Component.extend({
         this.get("submitField").perform("email", newsletterEndpoint, {
           email: this.get("changeset.email"),
           list: config.mailchimpList
-        })
-      );
-      childTasks.push(
-        this.get("submitField").perform("phone", smsEndpoint, {
-          phoneNumber: (this.get("changeset.phone") || "").replace(/\D/g, ""),
-          optIn: config.mobileCommonsOptInKey
         })
       );
 

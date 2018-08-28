@@ -5846,7 +5846,7 @@ nypr-publisher-lib@>=0.4.2:
     nypr-django-for-ember ">=0.3.0"
     nypr-ui ">=0.3.0"
 
-nypr-ui@>=0.3.0, nypr-ui@^0.3.1:
+nypr-ui@>=0.3.0:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/nypr-ui/-/nypr-ui-0.3.1.tgz#1925461fee8d67d21a0c41e627aaff1f773ef5f9"
   dependencies:
