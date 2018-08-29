@@ -4,7 +4,6 @@ import config from "ember-get-config";
 import fetch from "fetch";
 import layout from './template';
 import lookupValidator from "ember-changeset-validations";
-import { and } from "@ember/object/computed";
 import { computed } from "@ember/object";
 import { set } from "@ember/object";
 import { all, task } from "ember-concurrency";
@@ -14,7 +13,6 @@ import {
 } from "ember-changeset-validations/validators";
 
 let newsletterEndpoint = `${config.optInAPI}/mailchimp`;
-let smsEndpoint = `${config.optInAPI}/mobile-commons`;
 let validations = {
   email: validateFormat({ type: "email"}),
   legalChecked: validatePresence(true)
@@ -22,7 +20,7 @@ let validations = {
 
 export default Component.extend({
   layout,
-  classNames: ["opt-in"],
+  classNames: ["promo-opt-in"],
   emailResponseErrors: null,
 
   init() {
@@ -30,7 +28,7 @@ export default Component.extend({
     this.changeset = new Changeset(
       {
         email: null,
-        legalChecked: false
+        legalChecked: true
       },
       lookupValidator(validations),
       validations

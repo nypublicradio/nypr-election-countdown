@@ -1,8 +1,8 @@
-<p class="opt-in__opt-in-tease">essential politics coverage from
+<p class="promo-opt-in__opt-in-tease">essential politics coverage from
   WNYC and Gothamist</p>
 
 {{#if phoneSuccess}}
-  <div class="opt-in__both-success" data-test-both-success>
+  <div class="promo-opt-in__both-success" data-test-both-success>
     <p><b>Thanks for subscribing to our Newsletter and SMS updates</b></p>
     <p>If you change your mind,  turn SMS notifications off at any time by texting “STOP” to 7777. </p>
   </div>
@@ -10,32 +10,34 @@
 
 {{#if (not emailSuccess)}}
   <form {{action 'submitForms' on='submit'}}>
-    <div class="opt-in__formset">
+    <div class="promo-opt-in__formset">
       {{#if (not emailSuccess)}}
-        <div class="opt-in__email-form opt-in__form">
+        <div class="promo-opt-in__email-form promo-opt-in__form">
           {{nypr-input
           data-test-email-input
           fieldname='signupEmail'
           placeholder='Email Address'
           value=changeset.email
           errors=(or changeset.error.email.validation emailResponseErrors)
-          class=(concat "opt-in__email-input " (if submitEmail.isRunning 'is-loading'))
+          class=(concat "promo-opt-in__email-input " (if submitEmail.isRunning 'is-loading'))
           }}
+          <button class="promo-opt-in__submit-button" type="submit" disabled={{isSubmitButtonDisabled}} data-test-submit-button>
+            {{#liquid-if isLoading use='crossFade'}}
+              {{fa-icon icon='spinner' prefix='fas' spin=true}}
+            {{else}}
+              {{signUpButtonText}}
+            {{/liquid-if}}
+          </button>
         </div>
+
+        <p class="promo-opt-in__legal-checkbox">
+          {{input id="optin_legal" type="checkbox" name="legalChecked" checked=changeset.legalChecked}}
+          <label data-test-legal-checkbox for="optin_legal">I agree to the New York Public Radio <a href="https://www.wnyc.org/terms/" target="_blank">Terms</a>.</label>
+        </p>
       {{/if}}
+
     </div>
 
-    <p class="opt-in__legal-checkbox">
-      {{input id="optin_legal" type="checkbox" name="legalChecked" checked=changeset.legalChecked}}
-      <label data-test-legal-checkbox for="optin_legal">I agree to the New York Public Radio <a href="https://www.wnyc.org/terms/" target="_blank">Terms</a>.</label>
-    </p>
 
-    <button class="opt-in__submit-button" type="submit" disabled={{isSubmitButtonDisabled}} data-test-submit-button>
-      {{#liquid-if isLoading use='crossFade'}}
-        {{fa-icon icon='spinner' prefix='fas' spin=true}}
-      {{else}}
-        {{signUpButtonText}}
-      {{/liquid-if}}
-    </button>
   </form>
 {{/if}}

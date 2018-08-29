@@ -26,7 +26,7 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-right: 5px;
+  padding: 0 10px;
 }
 
 .election-promo__logo {
@@ -70,7 +70,13 @@ html, body {
   margin-right: 5px;
 }
 
-.opt-in__opt-in-tease {
+.promo-opt-in {
+  background-color: $col-darkblue;
+  height: 155px;
+  padding: 0px 10px;
+}
+
+.promo-opt-in__opt-in-tease {
   font-size: 12px;
   font-stretch: normal;
   font-style: normal;
@@ -81,6 +87,20 @@ html, body {
   text-transform: uppercase;
 }
 
-.opt-in {
-  background-color: $col-darkblue;
+.promo-opt-in .nypr-input {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: rgba(0, 0, 0, 0.0);
+  border: 0;
+  border-bottom: 1px solid white;
+  color: white;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.promo-opt-in__email-form {
+  display: flex;
+  flex-direction: row;
 }
