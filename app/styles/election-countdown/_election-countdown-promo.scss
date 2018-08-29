@@ -1,5 +1,5 @@
-@import "fonts";
-@import "vars";
+@import '../fonts';
+@import '../vars';
 
 @mixin body-font {
   font-family: $font-opensans;
@@ -14,13 +14,21 @@ html, body {
 .election-promo {
   font-family: $font-opensans;
   background-color: $col-lightblue;
-  display: flex;
-  flex-direction: column;
+  display: flex; flex-direction: column;
+
+  @include media('>=medium') {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .election-promo__top {
   display: flex;
   height: 124px;
+
+  @include media(">=medium") {
+    height: inherit;
+  }
 }
 
 .election-promo__top-copy {
@@ -78,6 +86,15 @@ html, body {
   background-color: $col-darkblue;
   height: 155px;
   padding: 0px 10px;
+  flex-direction: column;
+  justify-content: center;
+  height: inherit;
+
+  @include media(">=medium") {
+    display: flex;
+    max-width: 280px;
+    padding: 0px 160px 0px 40px;
+  }
 }
 
 .promo-opt-in .nypr-input-error {
@@ -97,6 +114,10 @@ html, body {
   line-height: 1.83;
   text-align: center;
   text-transform: uppercase;
+
+  @include media(">=medium") {
+    text-align: left;
+  }
 }
 
 .promo-opt-in__legal-checkbox {
@@ -106,7 +127,11 @@ html, body {
   margin-bottom: 28px;
   margin-left: auto;
   margin-right: auto;
-  color: gray;
+
+  @include media(">=medium") {
+    justify-content: left;
+    margin-bottom: 20px;
+  }
 
   // Hide the check by default
   & input[type="checkbox"] + label::after {
@@ -142,7 +167,7 @@ html, body {
 
 
   &::before {
-    border: 2px solid gray;
+    border: 2px solid white;
     content: "";
     display: inline-block;
     height: 14px;
@@ -171,15 +196,16 @@ html, body {
   appearance: none;
   background-color: rgba(0, 0, 0, 0.0);
   border: 0;
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid white;
   color: white;
   font-family: $font-opensans;
+  height: 24px;
   margin-right: 10px;
   min-width: 224px;
   font-size: 14px;
 
   &::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.8);
   }
 }
 
@@ -187,6 +213,11 @@ html, body {
   display: flex;
   flex-direction: row;
   justify-content: center;
+
+
+  @include media(">=medium") {
+    justify-content: left;
+  }
 }
 
 .election-promo button:focus {
@@ -210,7 +241,6 @@ html, body {
   &:hover {
     background-color: rgba(255, 255, 255, 0.7);
   }
-
 }
 
 .election-promo .fa-arrow-right {

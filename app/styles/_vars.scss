@@ -1,8 +1,16 @@
+// Breakpoints
+$small: 360px;
+$medium: 1024px;
+$large: 1440px;
+$breakpoints: (small: $small, medium: $medium, large: $large);
+
+// Fonts
 $base-font: 16;
 $line-height: 24;
 $font-montserrat: 'Montserrat', sans-serif;
 $font-opensans: 'Open Sans', sans-serif;
 
+// Colors
 $col-azul: #1e66de;
 $col-azure: #128cf4;
 $col-lightblue: #2965d9;
@@ -13,3 +21,6 @@ $col-warm-grey: #888;
 $col-white: #fff;
 $col-white-two: #f8f8f8;
 $col-white-three: #ddd;
+
+// Media query library; import this last
+@import '_include-media';
