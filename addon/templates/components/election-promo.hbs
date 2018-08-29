@@ -1,8 +1,21 @@
-<p>Placeholder for YVYC logo</p>
+<div class="election-promo__top">
+  <div class="election-promo__logo">
+    <a href="https://elections.wnyc.org">
+      <img src="/nypr-election-countdown/assets/images/logo.png">
+    </a>
+  </div>
 
-<p class="election-promo__news">
-  {{chunkContent}}
-</p>
+  <div class="election-promo__top-copy">
+    <p class="election-promo__news">
+      {{chunkContent}}
+    </p>
 
-{{election-countdown unit='days' to=countdownTo promo=true}}
+    {{election-countdown
+      unit='days'
+      to=countdownTo
+      promo=true
+      class="election-promo__countdown"}}
+  </div>
+</div>
 
+{{election-promo/opt-in}}
