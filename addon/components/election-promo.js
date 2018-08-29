@@ -17,5 +17,10 @@ export default Component.extend({
 
   store: service(),
 
-  countdownTo: '2018-11-06T00:00:00.000-05:00'
+  countdownTo: '2018-11-06T00:00:00.000-05:00',
+  actions: {
+    closeModule() {
+      document.querySelector('.election-promo').remove();
+    }
+  }
 });
