@@ -33,6 +33,11 @@
     "nypr-publisher-lib": ">=0.4.2"
   },
   "devDependencies": {
+    "@fortawesome/ember-fontawesome": "^0.1.2",
+    "@fortawesome/free-brands-svg-icons": "^5.2.0",
+    "@fortawesome/free-regular-svg-icons": "^5.2.0",
+    "@fortawesome/free-solid-svg-icons": "^5.2.0",
+    "@types/ember": "^2.8.32",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.0.0",
     "ember-changeset": "^1.5.0-beta.2",

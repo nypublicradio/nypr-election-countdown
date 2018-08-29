@@ -1,17 +1,18 @@
 @import "fonts";
 @import "vars";
 
+@mixin body-font {
+  font-family: $font-opensans;
+  color: white;
+}
+
 html, body {
   margin: 0;
   padding: 0;
 }
 
-* {
-  font-family: $font-opensans;
-  color: white;
-}
-
 .election-promo {
+  font-family: $font-opensans;
   background-color: $col-lightblue;
   display: flex;
   flex-direction: column;
@@ -48,6 +49,8 @@ html, body {
 }
 
 .election-promo .election-promo__news {
+  @include body-font;
+
   font-family: $font-montserrat;
   font-family: Montserrat;
   font-size: 21px;
@@ -56,6 +59,7 @@ html, body {
 }
 
 .election-promo__countdown {
+  @include body-font;
   display: flex;
 }
 
@@ -76,7 +80,15 @@ html, body {
   padding: 0px 10px;
 }
 
+.promo-opt-in .nypr-input-error {
+  @include body-font;
+
+  font-size: 12px;
+}
+
 .promo-opt-in__opt-in-tease {
+  @include body-font;
+
   font-size: 12px;
   font-stretch: normal;
   font-style: normal;
@@ -87,6 +99,73 @@ html, body {
   text-transform: uppercase;
 }
 
+.promo-opt-in__legal-checkbox {
+  display: flex;
+  line-height: 1.33;
+  justify-content: center;
+  margin-bottom: 28px;
+  margin-left: auto;
+  margin-right: auto;
+  color: gray;
+
+  // Hide the check by default
+  & input[type="checkbox"] + label::after {
+    content: none;
+  }
+
+  // Display when checked
+  & input[type="checkbox"]:checked + label::after {
+    content: ""
+  }
+
+  // Display when checked
+  & input[type="checkbox"]:focus + label::before {
+    box-shadow: 0px 0px 2px 2px gold;
+  }
+}
+
+.promo-opt-in__legal-checkbox input[type="checkbox"] {
+  opacity: 0;
+}
+
+.promo-opt-in__legal-checkbox a {
+  color: white;
+}
+
+.promo-opt-in__legal-checkbox label {
+  @include body-font;
+
+  font-size: 12px;
+  margin-left: 5px;
+  padding-left: 3px;
+  position: relative;
+
+
+  &::before {
+    border: 2px solid gray;
+    content: "";
+    display: inline-block;
+    height: 14px;
+    left: -20px;
+    position: absolute;
+    top: -1px;
+    width: 14px;
+  }
+
+  &::after {
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+    content: "";
+    display: inline-block;
+    height: 6px;
+    left: -17px;
+    position: absolute;
+    top: 2px;
+    transform: rotate(-45deg);
+    width: 10px;
+  }
+}
+
 .promo-opt-in .nypr-input {
   -webkit-appearance: none;
   appearance: none;
@@ -94,6 +173,10 @@ html, body {
   border: 0;
   border-bottom: 1px solid white;
   color: white;
+  font-family: $font-opensans;
+  margin-right: 10px;
+  min-width: 224px;
+  font-size: 14px;
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.6);
@@ -103,4 +186,34 @@ html, body {
 .promo-opt-in__email-form {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+}
+
+.election-promo button:focus {
+  box-shadow: 0px 0px 5px 3px gold;
+}
+
+.election-promo .promo-opt-in__submit-button {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: white;
+  border-radius: 20px;
+  border: 0;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  height: 30px;
+  padding-left: 7px;
+  padding-top: 3px;
+  width: 30px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+}
+
+.election-promo .fa-arrow-right {
+  height: 15px;
+  width: 15px;
 }
