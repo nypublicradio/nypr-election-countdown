@@ -46,6 +46,7 @@
 
   &-wrapper {
     display: flex;
+    align-items: center;
     flex-basis: 550px;
   }
 }
@@ -324,7 +325,10 @@
   top: 0;
   cursor: pointer;
 
-  width: 8px;
+  svg {
+    width: 12px;
+    fill: white;
+  }
 }
 
 .promo-opt-in__success-subhead {
