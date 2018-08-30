@@ -1,4 +1,3 @@
-
 {{#if emailSuccess}}
   <div class="promo-opt-in__both-success" data-test-both-success>
     <p class="promo-opt-in__success-subhead">Thanks for subscribing to our Newsletter</p>
@@ -22,7 +21,7 @@
             class=(concat "promo-opt-in__email-input " (if submitEmail.isRunning 'is-loading'))
           }}
           <button class="promo-opt-in__submit-button" type="submit" disabled={{not changeset.isValid}} data-test-submit-button>
-            {{#liquid-if isLoading use='crossFade'}}
+            {{#liquid-if submitField.isRunning use='crossFade'}}
               {{fa-icon icon='spinner' prefix='fas' spin=true}}
             {{else}}
               {{fa-icon icon='arrow-right'}}
@@ -37,7 +36,5 @@
       {{/if}}
 
     </div>
-
-
   </form>
 {{/if}}
