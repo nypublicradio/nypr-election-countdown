@@ -25,7 +25,7 @@ module.exports = function(environment) {
     platformEventsAPI: 'https://api.demo.nypr.digital/analytics',
     webRoot: 'https://wnyc.demo2.wnyc.net',
     adminRoot: 'https://internal.demo2.wnyc.net',
-    optInAPI: 'https://labmda-gateway.demo.nypr.digital/opt-in/v1/subscribe',
+    optInAPI: 'https://lambda-gateway.demo.nypr.digital/opt-in/v1/subscribe',
     mailchimpList: process.env.MAILCHIMP_LIST,
     mobileCommonsOptInKey: process.env.MOBILE_COMMONS_OPT_IN,
   };
