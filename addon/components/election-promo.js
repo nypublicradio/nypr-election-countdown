@@ -32,7 +32,7 @@ export default Component.extend({
   actions: {
     closeModule() {
       let cookieService = this.get("cookies");
-      cookieService.write("hasSeenElectionPromo", true, {path: '/', domain: 'wnyc.org'});
+      cookieService.write("hasSeenElectionPromo", true, {path: '/'});
       this.set('alreadyShown', true);
     }
   }
