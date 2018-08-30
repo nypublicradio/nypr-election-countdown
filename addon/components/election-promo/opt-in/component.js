@@ -4,7 +4,6 @@ import config from "ember-get-config";
 import fetch from "fetch";
 import layout from './template';
 import lookupValidator from "ember-changeset-validations";
-import { computed } from "@ember/object";
 import { set } from "@ember/object";
 import { all, task } from "ember-concurrency";
 import {
@@ -36,14 +35,6 @@ export default Component.extend({
     set(this, "changeset", this.changeset);
   },
 
-  isSubmitButtonDisabled: computed(
-    "changeset.{email,legalChecked}",
-    function() {
-      return !(
-        this.get("changeset.email") && this.get("changeset.legalChecked")
-      );
-    }
-  ),
   submitField: task(function*(fieldName, endpoint, data) {
     if (
       this.get(`changeset.${fieldName}`) && // email has been entered
