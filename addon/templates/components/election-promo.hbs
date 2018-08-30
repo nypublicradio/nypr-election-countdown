@@ -4,7 +4,7 @@
 
 <div class="election-promo__top">
   <div class="election-promo__logo">
-    <a href="https://elections.wnyc.org">
+    <a href="https://elections.wnyc.org?utm_medium=partnersite&source={{utmSource}}&campaign=globalmidtermspromo" target="_blank">
       <img src="/nypr-election-countdown/assets/images/logo.png">
     </a>
   </div>
@@ -14,12 +14,14 @@
       {{chunkContent}}
     </p>
 
+    <a href="https://elections.wnyc.org?utm_medium=partnersite&source={{utmSource}}&campaign=globalmidtermspromo" target="_blank">
     {{election-countdown
       unit='days'
       to=countdownTo
       promo=true
       arrow=true
       class="election-promo__countdown"}}
+    </a>
   </div>
 </div>
 
