@@ -33,7 +33,7 @@ export default Component.extend({
     closeModule() {
       let cookieService = this.get("cookies");
       cookieService.write("hasSeenElectionPromo", true, {path: '/', domain: 'wnyc.org'});
-      document.querySelector(".election-promo").remove();
+      this.set('alreadyShown', true);
     }
   }
 });
