@@ -1,11 +1,11 @@
-<p class="promo-opt-in__opt-in-tease">essential politics coverage from
-  WNYC and Gothamist</p>
 
-{{#if phoneSuccess}}
+{{#if emailSuccess}}
   <div class="promo-opt-in__both-success" data-test-both-success>
-    <p><b>Thanks for subscribing to our Newsletter and SMS updates</b></p>
-    <p>If you change your mind,  turn SMS notifications off at any time by texting “STOP” to 7777. </p>
+    <p class="promo-opt-in__success-subhead">Thanks for subscribing to our Newsletter</p>
+    <p class="promo-opt-in__success-text">Don’t forget you can also get text notifications by texting “SUBSME” to 7777. </p>
   </div>
+{{else}}
+  <p class="promo-opt-in__opt-in-tease">Essential politics coverage from WNYC and Gothamist</p>
 {{/if}}
 
 {{#if (not emailSuccess)}}
@@ -14,12 +14,12 @@
       {{#if (not emailSuccess)}}
         <div class="promo-opt-in__email-form promo-opt-in__form">
           {{nypr-input
-          data-test-email-input
-          fieldname='signupEmail'
-          placeholder='Email Address'
-          value=changeset.email
-          errors=(or changeset.error.email.validation emailResponseErrors)
-          class=(concat "promo-opt-in__email-input " (if submitEmail.isRunning 'is-loading'))
+            data-test-email-input
+            fieldname='signupEmail'
+            placeholder='Email Address'
+            value=changeset.email
+            errors=(or changeset.error.email.validation emailResponseErrors)
+            class=(concat "promo-opt-in__email-input " (if submitEmail.isRunning 'is-loading'))
           }}
           <button class="promo-opt-in__submit-button" type="submit" disabled={{isSubmitButtonDisabled}} data-test-submit-button>
             {{#liquid-if isLoading use='crossFade'}}

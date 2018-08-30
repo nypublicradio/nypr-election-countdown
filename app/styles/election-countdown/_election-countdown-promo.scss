@@ -6,6 +6,20 @@
   color: white;
 }
 
+@mixin all-caps-subhead {
+  @include body-font;
+
+  color: white;
+  font-size: 12px;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 1.7px;
+  line-height: 1.83;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -69,6 +83,14 @@ html, body {
 .election-promo__countdown {
   @include body-font;
   display: flex;
+  align-items: center;
+}
+
+.election-promo__countdown svg {
+  fill: white;
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
 }
 
 .election-countdown__left {
@@ -101,19 +123,12 @@ html, body {
   @include body-font;
 
   font-size: 12px;
+  font-weight: 600;
+  font-style: italic;
 }
 
 .promo-opt-in__opt-in-tease {
-  @include body-font;
-
-  font-size: 12px;
-  font-stretch: normal;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: 1.7px;
-  line-height: 1.83;
-  text-align: center;
-  text-transform: uppercase;
+  @include all-caps-subhead;
 
   @include media(">=medium") {
     text-align: left;
@@ -219,26 +234,31 @@ html, body {
   }
 }
 
-.election-promo button:focus {
-  box-shadow: 0px 0px 5px 3px gold;
+.election-promo button:disabled {
+  opacity: 0.6;
+  cursor: none;
+  pointer-events: none;
 }
 
 .election-promo .promo-opt-in__submit-button {
   -webkit-appearance: none;
+  align-items: center;
   appearance: none;
   background-color: white;
-  border-radius: 20px;
+  border-radius: 30px;
   border: 0;
   color: #333;
   cursor: pointer;
   display: flex;
   height: 30px;
+  justify-content: center;
   padding-left: 7px;
   padding-top: 3px;
+  transition: ease 0.2s;
   width: 30px;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgb(200,200,255);
   }
 }
 
@@ -254,4 +274,20 @@ html, body {
   right: 3px;
   top: 0px;
   cursor: pointer;
+}
+
+.promo-opt-in__success-subhead {
+  @include all-caps-subhead;
+
+  @include media(">=medium") {
+    text-align: left;
+  }
+}
+
+.promo-opt-in__success-text {
+  @include body-font;
+
+  @include media("<medium") {
+    text-align: center;
+  }
 }
