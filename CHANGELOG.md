@@ -1,5 +1,8 @@
 # nypr-election-countdown Changelog
 
+## 0.2.1
+- [CHORE] don't publish envvars
+
 ## 0.2.0
 - [FEATURE] adds election-promo component
 
