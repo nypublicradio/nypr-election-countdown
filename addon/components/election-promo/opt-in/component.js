@@ -1,6 +1,5 @@
 import Changeset from "ember-changeset";
 import Component from "@ember/component";
-import config from "ember-get-config";
 import fetch from "fetch";
 import layout from './template';
 import lookupValidator from "ember-changeset-validations";
@@ -11,7 +10,6 @@ import {
   validatePresence
 } from "ember-changeset-validations/validators";
 
-let newsletterEndpoint = `${config.optInAPI}/mailchimp`;
 let validations = {
   email: validateFormat({ type: "email"}),
   legalChecked: validatePresence(true)
@@ -60,9 +58,9 @@ export default Component.extend({
     submitForms() {
       this.get('changeset').validate().then(() => {
         if (this.get('changeset').get('isValid') && !this.get('emailSuccess')) {
-          this.get('submitField').perform("email", `${this.mailchimpEndpoint}`, {
+          this.get('submitField').perform("email", `${this.get('mailchimpEndpoint')}`, {
             email: this.get("changeset.email"),
-            list: config.mailchimpList
+            list: this.get('politicsBriefNewsletter')
           })
           .then(values => values ? this.setProperties(values) : null);
         }
