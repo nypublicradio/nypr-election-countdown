@@ -31,6 +31,7 @@
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^2.0.1",
     "ical-generator": "^0.2.10",
+    "include-media": "^1.4.9",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.20",
     "nypr-countdown": "^0.1.0",
@@ -71,7 +72,6 @@
     "ember-try": "^0.2.23",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^6.0.1",
-    "include-media": "^1.4.9",
     "loader.js": "^4.2.3",
     "qunit-dom": "^0.6.2"
   },
