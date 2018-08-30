@@ -15,7 +15,7 @@
           {{nypr-input
             data-test-email-input
             fieldname='signupEmail'
-            placeholder='Email Address'
+            placeholder='you@email.com'
             value=changeset.email
             errors=(or changeset.error.email.validation emailResponseErrors)
             class=(concat "promo-opt-in__email-input " (if submitEmail.isRunning 'is-loading'))
