@@ -1,0 +1,297 @@
+@import '../fonts';
+@import '../vars';
+
+@mixin body-font {
+  font-family: $font-opensans;
+  color: white;
+}
+
+@mixin all-caps-subhead {
+  @include body-font;
+
+  color: white;
+  font-size: 12px;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 1.7px;
+  line-height: 1.83;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.election-promo {
+  font-family: $font-opensans;
+  background-color: $col-lightblue;
+  display: flex; flex-direction: column;
+
+  @include media('>=medium') {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.election-promo__top {
+  display: flex;
+  height: 124px;
+
+  @include media(">=medium") {
+    height: inherit;
+  }
+}
+
+.election-promo__top-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.election-promo__logo {
+  align-items: center;
+  display: flex;
+  flex: 0 1 120px;
+  justify-content: center;
+  min-width: 100px;
+}
+
+.election-promo__logo a {
+  width: 88px;
+  height: 88px;
+  display: block;
+}
+
+.election-promo__logo img {
+  width: 100%;
+}
+
+.election-promo .election-promo__news {
+  @include body-font;
+
+  font-family: $font-montserrat;
+  font-family: Montserrat;
+  font-size: 21px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.election-promo__countdown {
+  @include body-font;
+  display: flex;
+  align-items: center;
+}
+
+.election-promo__countdown svg {
+  fill: white;
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+}
+
+.election-countdown__left {
+  display: flex;
+  font-size: 16px;
+  border-bottom: 1px solid white;
+}
+
+.election-countdown__left .election-countdown__diff {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.promo-opt-in {
+  background-color: $col-darkblue;
+  height: 155px;
+  padding: 0px 10px;
+  flex-direction: column;
+  justify-content: center;
+  height: inherit;
+
+  @include media(">=medium") {
+    display: flex;
+    max-width: 280px;
+    padding: 0px 160px 0px 40px;
+  }
+}
+
+.promo-opt-in .nypr-input-error {
+  @include body-font;
+
+  font-size: 12px;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.promo-opt-in__opt-in-tease {
+  @include all-caps-subhead;
+
+  @include media(">=medium") {
+    text-align: left;
+  }
+}
+
+.promo-opt-in__legal-checkbox {
+  display: flex;
+  line-height: 1.33;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media(">=medium") {
+    justify-content: left;
+  }
+
+  // Hide the check by default
+  & input[type="checkbox"] + label::after {
+    content: none;
+  }
+
+  // Display when checked
+  & input[type="checkbox"]:checked + label::after {
+    content: ""
+  }
+
+  // Display when checked
+  & input[type="checkbox"]:focus + label::before {
+    box-shadow: 0px 0px 2px 2px gold;
+  }
+}
+
+.promo-opt-in__legal-checkbox input[type="checkbox"] {
+  opacity: 0;
+}
+
+.promo-opt-in__legal-checkbox a {
+  color: white;
+}
+
+.promo-opt-in__legal-checkbox label {
+  @include body-font;
+
+  font-size: 12px;
+  margin-left: 5px;
+  padding-left: 3px;
+  position: relative;
+
+
+  &::before {
+    border: 2px solid white;
+    content: "";
+    display: inline-block;
+    height: 14px;
+    left: -20px;
+    position: absolute;
+    top: -1px;
+    width: 14px;
+  }
+
+  &::after {
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+    content: "";
+    display: inline-block;
+    height: 6px;
+    left: -17px;
+    position: absolute;
+    top: 2px;
+    transform: rotate(-45deg);
+    width: 10px;
+  }
+}
+
+.promo-opt-in .nypr-input {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: rgba(0, 0, 0, 0.0);
+  border: 0;
+  border-bottom: 2px solid white;
+  color: white;
+  font-family: $font-opensans;
+  height: 24px;
+  margin-right: 10px;
+  min-width: 224px;
+  font-size: 14px;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.promo-opt-in__email-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+
+  @include media(">=medium") {
+    justify-content: left;
+  }
+}
+
+.election-promo button:disabled {
+  opacity: 0.6;
+  cursor: none;
+  pointer-events: none;
+}
+
+.election-promo .promo-opt-in__submit-button {
+  -webkit-appearance: none;
+  align-items: center;
+  appearance: none;
+  background-color: white;
+  border-radius: 30px;
+  border: 0;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  padding-left: 7px;
+  padding-top: 3px;
+  transition: ease 0.2s;
+  width: 30px;
+
+  &:hover {
+    background-color: rgb(200,200,255);
+  }
+}
+
+.election-promo .fa-arrow-right {
+  height: 15px;
+  width: 15px;
+}
+
+.election-promo__close-button {
+  position: absolute;
+  color: white;
+  padding: 5px 10px;
+  right: 3px;
+  top: 0px;
+  cursor: pointer;
+}
+
+.promo-opt-in__success-subhead {
+  @include all-caps-subhead;
+
+  @include media(">=medium") {
+    text-align: left;
+  }
+}
+
+.promo-opt-in__success-text {
+  @include body-font;
+
+  @include media("<medium") {
+    text-align: center;
+  }
+}
+
+.hidden {
+  display: none;
+}

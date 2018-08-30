@@ -1,13 +1,26 @@
-{{election-countdown unit='days' to=countdownTo promo=true}}
+<div class="election-promo__close-button" onclick={{action 'closeModule'}}>
+  {{fa-icon icon="times"}}
+</div>
 
-<p class="election-promo__news">
-  {{chunkContent}}
-</p>
+<div class="election-promo__top">
+  <div class="election-promo__logo">
+    <a href="https://elections.wnyc.org">
+      <img src="/nypr-election-countdown/assets/images/logo.png">
+    </a>
+  </div>
 
-<a class="election-promo__view-guide button" href="#">
-  + View Our Guide
-</a>
+  <div class="election-promo__top-copy">
+    <p class="election-promo__news">
+      {{chunkContent}}
+    </p>
 
-<a class="election-promo__get-updates button" href="#">
-  + Get Updates
-</a>
+    {{election-countdown
+      unit='days'
+      to=countdownTo
+      promo=true
+      arrow=true
+      class="election-promo__countdown"}}
+  </div>
+</div>
+
+{{election-promo/opt-in}}

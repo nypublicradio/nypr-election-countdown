@@ -1,5 +1,5 @@
-@import 'vars';
 @import 'fonts';
+@import 'vars';
 
 // extra small < 360px
 $small: 360px;
@@ -9,50 +9,5 @@ $breakpoints: (small: $small, medium: $medium, large: $large);
 
 @import '_include-media';
 
-.election-countdown {
-  background-color: $col-azul;
-  color: $col-white;
-  font-size: 14px;
-  padding: 16px;
-  text-align: left;
-  height: 70px;
-
-  display: flex;
-  justify-content: space-between;
-
-  a {
-    color: $col-white;
-  }
-
-  &__left {
-    align-items: center;
-    display: flex;
-    font-family: $font-montserrat;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.38;
-  }
-
-  &__right {
-    line-height: 1.57;
-    flex-shrink: 0;
-
-    @include media('>=medium') {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-    }
-  }
-
-  &__diff {
-    font-size: 44px;
-    line-height: .5;
-    margin-right: 16px;
-  }
-
-  &__get-updates, &__find-polling-places, &__look-up-results {
-    @include media('>=medium') {
-      margin-left: 20px;
-    }
-  }
-}
+@import 'election-countdown/election-countdown-module';
+@import 'election-countdown/election-countdown-promo';
