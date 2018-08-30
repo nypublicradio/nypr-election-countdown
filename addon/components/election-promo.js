@@ -20,7 +20,7 @@ export default Component.extend({
     this.get('store')
       .findRecord("chunk", this.chunkSlug)
       .then(chunkContent => {
-        this.set("chunkContent", chunkContent.content);
+        this.set("chunkContent", chunkContent.get('content'));
       });
   },
 
