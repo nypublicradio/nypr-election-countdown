@@ -22,6 +22,10 @@
     "cal": "node -r dotenv/config scripts/cal.js"
   },
   "dependencies": {
+    "@fortawesome/ember-fontawesome": "^0.1.2",
+    "@fortawesome/free-brands-svg-icons": "^5.2.0",
+    "@fortawesome/free-regular-svg-icons": "^5.2.0",
+    "@fortawesome/free-solid-svg-icons": "^5.2.0",
     "aws-sdk": "^2.257.1",
     "dotenv": "^6.0.0",
     "ember-cli-babel": "^6.6.0",
@@ -33,10 +37,6 @@
     "nypr-publisher-lib": ">=0.4.2"
   },
   "devDependencies": {
-    "@fortawesome/ember-fontawesome": "^0.1.2",
-    "@fortawesome/free-brands-svg-icons": "^5.2.0",
-    "@fortawesome/free-regular-svg-icons": "^5.2.0",
-    "@fortawesome/free-solid-svg-icons": "^5.2.0",
     "@types/ember": "^2.8.32",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.0.0",
