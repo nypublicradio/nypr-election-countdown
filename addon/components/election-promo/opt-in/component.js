@@ -5,7 +5,7 @@ import fetch from "fetch";
 import layout from './template';
 import lookupValidator from "ember-changeset-validations";
 import { set } from "@ember/object";
-import { all, task } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import {
   validateFormat,
   validatePresence
@@ -36,51 +36,37 @@ export default Component.extend({
   },
 
   submitField: task(function*(fieldName, endpoint, data) {
-    if (
-      this.get(`changeset.${fieldName}`) && // email has been entered
-      !this.get(`changeset.error.${fieldName}`) && // no errors exist
-      !this.get(`${fieldName}Success`) // not already submitted
-    ) {
-      return yield fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+    return yield fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+      .then(res => {
+        // Success response
+        if (res.status === 200 || res.status === 201) {
+          return {emailSuccess: true, 'changeset.legalChecked': false};
+        }
+        // Error response
+        if (res.status >= 400) {
+          return res
+            .json()
+            .then(json => ({emailResponseErrors: [json.detail]}));
+        }
       })
-        .then(res => {
-          // Success response
-          if (res.status === 200 || res.status === 201) {
-            this.set("changeset.legalChecked", false);
-            return [`${fieldName}Success`, true];
-          }
-          // Error response
-          if (res.status >= 400) {
-            return res
-              .json()
-              .then(json => [`${fieldName}ResponseErrors`, [json.detail]]);
-          }
-        })
-        .catch(e => {
-          return e;
-        });
-    }
+      .catch(e => ({emailResponseErrors: [e]}));
   }),
 
   actions: {
     submitForms() {
-      let childTasks = [];
-      this.set("isLoading", true);
-
-      childTasks.push(
-        this.get("submitField").perform("email", newsletterEndpoint, {
-          email: this.get("changeset.email"),
-          list: config.mailchimpList
-        })
-      );
-
-      all(childTasks).then(completedJobs => {
-        this.set("isLoading", false);
-        completedJobs.forEach(values => (values ? this.set(...values) : null));
-      });
+      this.changeset.validate().then(() => {
+        if (this.changeset.get('isValid') && !this.emailSuccess) {
+          this.submitField.perform("email", newsletterEndpoint, {
+            email: this.get("changeset.email"),
+            list: config.mailchimpList
+          })
+          .then(values => values ? this.setProperties(values) : null);
+        }
+      })
     }
   }
 });
