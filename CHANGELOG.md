@@ -1,5 +1,8 @@
 # nypr-election-countdown Changelog
 
+## 0.2.0
+- [FEATURE] adds election-promo component
+
 ## 0.1.5
 - [CHORE] UI tweaks
 
