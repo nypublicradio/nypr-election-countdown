@@ -24,7 +24,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.changeset = new Changeset(
+    let changeset = new Changeset(
       {
         email: null,
         legalChecked: true
@@ -32,7 +32,7 @@ export default Component.extend({
       lookupValidator(validations),
       validations
     );
-    set(this, "changeset", this.changeset);
+    set(this, "changeset", changeset);
   },
 
   submitField: task(function*(fieldName, endpoint, data) {
@@ -58,9 +58,9 @@ export default Component.extend({
 
   actions: {
     submitForms() {
-      this.changeset.validate().then(() => {
-        if (this.changeset.get('isValid') && !this.emailSuccess) {
-          this.submitField.perform("email", newsletterEndpoint, {
+      this.get('changeset').validate().then(() => {
+        if (this.get('changeset').get('isValid') && !this.get('emailSuccess')) {
+          this.get('submitField').perform("email", `${this.mailchimpEndpoint}`, {
             email: this.get("changeset.email"),
             list: config.mailchimpList
           })
