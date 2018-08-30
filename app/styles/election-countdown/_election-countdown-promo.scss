@@ -33,10 +33,14 @@
 
 .election-promo__top {
   display: flex;
-  height: 124px;
+  align-items: center;
+
+  flex-basis: 100%;
+  padding: 16px;
 
   @include media(">=medium") {
-    height: inherit;
+    flex-basis: 50%;
+    padding: 40px 48px;
   }
 }
 
@@ -44,15 +48,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 10px;
 }
 
 .election-promo__logo {
-  align-items: center;
-  display: flex;
-  flex: 0 1 120px;
-  justify-content: center;
-  min-width: 100px;
+  margin-right: 16px;
 }
 
 .election-promo__logo a {
@@ -69,10 +68,15 @@
   @include body-font;
 
   font-family: $font-montserrat;
-  font-family: Montserrat;
   font-size: 21px;
   font-weight: 600;
-  margin: 0 0 10px;
+  margin-bottom: 10px;
+  line-height: 1.2;
+
+  @include media(">=medium") {
+    font-size: 30px;
+    line-height: 1;
+  }
 }
 
 .election-promo__countdown {
@@ -90,8 +94,17 @@
 
 .election-countdown__left {
   display: flex;
-  font-size: 16px;
+  font-size: 12px;
   border-bottom: 1px solid white;
+  line-height: 1;
+
+  @include media(">=small") {
+    font-size: 16px;
+  }
+
+  @include media(">=medium") {
+    font-size: 24px;
+  }
 }
 
 .election-countdown__left .election-countdown__diff {
@@ -101,31 +114,44 @@
 
 .promo-opt-in {
   background-color: $col-darkblue;
-  height: 155px;
-  padding: 0px 10px;
   flex-direction: column;
   justify-content: center;
-  height: inherit;
+
+  flex-basis: 100%;
+  padding: 16px 32px 24px;
 
   @include media(">=medium") {
     display: flex;
-    max-width: 280px;
-    padding: 0px 160px 0px 40px;
+    flex-basis: 50%;
+    justify-content: center;
+    padding: 16px 32px;
   }
 }
 
-.promo-opt-in .nypr-input-error {
+.promo-opt-in .nypr-input-footer .nypr-input-error {
   @include body-font;
 
   font-size: 12px;
   font-weight: 600;
   font-style: italic;
+
+  padding: 0;
+}
+
+.promo-opt-in .nypr-input-label {
+  display: none;
+}
+
+.promo-opt-in .nypr-input-footer {
+  margin-bottom: 0;
 }
 
 .promo-opt-in__opt-in-tease {
   @include all-caps-subhead;
+  margin-bottom: 16px;
 
   @include media(">=medium") {
+    margin-bottom: 8px;
     text-align: left;
   }
 }
@@ -134,7 +160,7 @@
   display: flex;
   line-height: 1.33;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   margin-left: auto;
   margin-right: auto;
 
@@ -164,6 +190,8 @@
 
 .promo-opt-in__legal-checkbox a {
   color: white;
+
+  border-bottom-color: white;
 }
 
 .promo-opt-in__legal-checkbox label {
@@ -180,9 +208,9 @@
     content: "";
     display: inline-block;
     height: 14px;
-    left: -20px;
+    left: -17px;
     position: absolute;
-    top: -1px;
+    top: 1px;
     width: 14px;
   }
 
@@ -191,10 +219,10 @@
     border-left: 2px solid white;
     content: "";
     display: inline-block;
-    height: 6px;
-    left: -17px;
+    height: 4px;
+    left: -15px;
     position: absolute;
-    top: 2px;
+    top: 5px;
     transform: rotate(-45deg);
     width: 10px;
   }
@@ -206,11 +234,12 @@
   background-color: rgba(0, 0, 0, 0.0);
   border: 0;
   border-bottom: 2px solid white;
+  border-radius: 0;
   color: white;
   font-family: $font-opensans;
   height: 24px;
   margin-right: 10px;
-  min-width: 224px;
+  margin-bottom: 8px;
   font-size: 14px;
 
   &::placeholder {
@@ -225,8 +254,14 @@
 
 
   @include media(">=medium") {
-    justify-content: left;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 8px;
   }
+}
+
+.promo-opt-in__email-input {
+  margin-right: 16px;
 }
 
 .election-promo button:disabled {
@@ -247,8 +282,6 @@
   display: flex;
   height: 30px;
   justify-content: center;
-  padding-left: 7px;
-  padding-top: 3px;
   transition: ease 0.2s;
   width: 30px;
 
@@ -266,8 +299,8 @@
   position: absolute;
   color: white;
   padding: 5px 10px;
-  right: 3px;
-  top: 0px;
+  right: 0;
+  top: 0;
   cursor: pointer;
 }
 
