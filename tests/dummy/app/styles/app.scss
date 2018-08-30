@@ -1,1 +1,10 @@
 @import "election-countdown/election-countdown-promo";
+
+
+html {
+  font-size: 62.5%; // make it so we can use base-10 rems
+  font-family: $font-opensans;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
