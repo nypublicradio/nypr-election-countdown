@@ -44,15 +44,6 @@ export default Component.extend({
       );
     }
   ),
-  signUpButtonText: computed("phoneSuccess", "emailSuccess", function() {
-    if (this.get("phoneSuccess") && !this.get("emailSuccess")) {
-      return "Subscribe to the Newsletter";
-    }
-    if (!this.get("phoneSuccess") && this.get("emailSuccess")) {
-      return "Sign Up for SMS";
-    }
-    return "Sign Up";
-  }),
   submitField: task(function*(fieldName, endpoint, data) {
     if (
       this.get(`changeset.${fieldName}`) && // email has been entered
