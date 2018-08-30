@@ -17,7 +17,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.store
+    this.get('store')
       .findRecord("chunk", this.chunkSlug)
       .then(chunkContent => {
         this.set("chunkContent", chunkContent.content);
