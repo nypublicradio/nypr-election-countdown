@@ -28,12 +28,14 @@ export default Component.extend({
     let changeset = new Changeset(
       {
         email: null,
-        legalChecked: true
+        legalChecked: null
       },
       lookupValidator(validations),
       validations
     );
     set(this, "changeset", changeset);
+    set(this, "changeset.email", "");
+    set(this, "changeset.legalChecked", false);
   },
 
   submitField: task(function*(fieldName, endpoint, data) {
