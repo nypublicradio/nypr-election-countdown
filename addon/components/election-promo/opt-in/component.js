@@ -5,6 +5,7 @@ import layout from './template';
 import lookupValidator from "ember-changeset-validations";
 import { set } from "@ember/object";
 import { task } from "ember-concurrency";
+import { inject } from "@ember/service";
 import {
   validateFormat,
   validatePresence
@@ -19,6 +20,8 @@ export default Component.extend({
   layout,
   classNames: ["promo-opt-in"],
   emailResponseErrors: null,
+
+  cookies: inject(),
 
   init() {
     this._super(...arguments);
@@ -42,6 +45,8 @@ export default Component.extend({
       .then(res => {
         // Success response
         if (res.status === 200 || res.status === 201) {
+          let cookieService = this.get("cookies");
+          cookieService.write("hasSeenElectionPromo", true, {path: '/'});
           return {emailSuccess: true, 'changeset.legalChecked': false};
         }
         // Error response

@@ -17,18 +17,18 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
+
+    let cookieService = this.get("cookies");
+    if (cookieService.read("hasSeenElectionPromo")) {
+      this.set("alreadyShown", true);
+    }
+
     this.get('store')
       .findRecord("chunk", this.chunkSlug)
       .then(chunkContent => {
         this.set("chunkContent", chunkContent.get('content'));
       });
   },
-
-  alreadyShown: computed('cookies', function() {
-    let cookieService = this.get("cookies");
-    return cookieService.read("hasSeenElectionPromo");
-  }),
-
   actions: {
     closeModule() {
       let cookieService = this.get("cookies");
