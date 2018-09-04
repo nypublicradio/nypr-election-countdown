@@ -35,7 +35,7 @@ export default Component.extend({
     );
     set(this, "changeset", changeset);
     set(this, "changeset.email", "");
-    set(this, "changeset.legalChecked", false);
+    set(this, "changeset.legalChecked", true);
   },
 
   submitField: task(function*(fieldName, endpoint, data) {
