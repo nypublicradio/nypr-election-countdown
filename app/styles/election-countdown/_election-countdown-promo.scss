@@ -29,6 +29,22 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
+  a,
+  .election-countdown__left,
+  .election-promo__close-button {
+    color: white;
+    text-decoration: none;
+    transition: opacity .2s ease-out;
+
+    p & {
+      border-bottom: 1px solid white;
+    }
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
 }
 
 .election-promo__top {
@@ -287,7 +303,7 @@
 }
 
 .election-promo button:disabled {
-  opacity: 0.6;
+  opacity: 0.3;
   cursor: none;
   pointer-events: none;
 }
