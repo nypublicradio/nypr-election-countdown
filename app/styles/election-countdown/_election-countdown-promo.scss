@@ -340,6 +340,12 @@
   transition: ease 0.2s;
   width: 30px;
 
+  svg {
+    position: relative;
+    top: 3px;
+    left: -1px;
+  }
+
   &:hover {
     background-color: rgb(200,200,255);
   }
