@@ -1,7 +1,6 @@
 import Component from "@ember/component";
 import layout from "../templates/components/election-promo";
 import { inject } from "@ember/service";
-import { computed } from "@ember/object";
 
 export default Component.extend({
   layout,
