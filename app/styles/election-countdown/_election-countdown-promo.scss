@@ -121,24 +121,26 @@
   margin-left: 5px;
 }
 
-.election-countdown__left {
-  display: flex;
-  font-size: 12px;
-  border-bottom: 1px solid white;
-  line-height: 1;
+.election-promo {
+  .election-countdown__left {
+    display: flex;
+    font-size: 12px;
+    border-bottom: 1px solid white;
+    line-height: 1;
 
-  @include media(">=small") {
-    font-size: 16px;
+    @include media(">=small") {
+      font-size: 16px;
+    }
+
+    @include media(">=medium") {
+      font-size: 24px;
+    }
   }
 
-  @include media(">=medium") {
-    font-size: 24px;
+  .election-countdown__diff {
+    font-weight: bold;
+    margin-right: 5px;
   }
-}
-
-.election-countdown__left .election-countdown__diff {
-  font-weight: bold;
-  margin-right: 5px;
 }
 
 .promo-opt-in {

@@ -5,7 +5,7 @@
   background-color: $col-azul;
   color: $col-white;
   display: flex;
-  font-size: 1.4rem;
+  font-size: 14px;
   padding: 16px;
   text-align: left;
   height: 70px;
@@ -19,19 +19,15 @@
     align-items: center;
     display: flex;
     font-family: $font-montserrat;
-    font-size: 1.6rem;
+    font-size: 16px;
     font-weight: 600;
     line-height: 1.38;
-    width: 60%;
-
-    @include media('>=medium') {
-      width: 50%;
-    }
+    width: 62%;
   }
 
   &__right {
     line-height: 1.57;
-    width: 40%;
+    width: 38%;
 
     > div {
       margin-left: 24px;
@@ -41,12 +37,11 @@
       align-items: center;
       display: flex;
       justify-content: flex-end;
-      width: 50%;
     }
   }
 
   &__diff {
-    font-size: 4.4rem;
+    font-size: 44px;
     line-height: .5;
     margin-right: 16px;
   }
