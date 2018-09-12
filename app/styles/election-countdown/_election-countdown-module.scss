@@ -5,7 +5,7 @@
   background-color: $col-azul;
   color: $col-white;
   display: flex;
-  font-size: 1.4rem;
+  font-size: 14px;
   padding: 16px;
   text-align: left;
   height: 70px;
@@ -19,7 +19,7 @@
     align-items: center;
     display: flex;
     font-family: $font-montserrat;
-    font-size: 1.6rem;
+    font-size: 16px;
     font-weight: 600;
     line-height: 1.38;
     width: 60%;
@@ -46,7 +46,7 @@
   }
 
   &__diff {
-    font-size: 4.4rem;
+    font-size: 44px;
     line-height: .5;
     margin-right: 16px;
   }

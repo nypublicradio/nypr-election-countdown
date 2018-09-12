@@ -1,6 +1,8 @@
 {{#if (is-between electionDayStart electionDayEnd)}}
 
-  <div class="election-countdown__header">Election Day is Today!</div>
+  <div class="election-countdown__left">
+    <div class="election-countdown__header">Election Day is Today!</div>
+  </div>
   {{#unless promo}}
     <div class="election-countdown__share-voting-issues">
       + <a href="#">Share Voting Issues</a>
@@ -12,7 +14,9 @@
 
 {{else if (is-after electionDayEnd)}}
 
-  <div class="election-countdown__header">Ready for the Next Election?</div>
+  <div class="election-countdown__left">
+    <div class="election-countdown__header">Ready for the Next Election?</div>
+  </div>
   {{#unless promo}}
     <div class="election-countdown__share-your-experience">
       + <a href="#">Share Your Experience</a>
@@ -27,7 +31,7 @@
   <div class="election-countdown__left">
     <div class="election-countdown__diff">{{diff}}</div>
     <div class="election-countdown__header">
-      {{if (is-before electionDayEveStart) "Days" "Day"}} Until Elections
+      {{if (is-before electionDayEveStart) "Days" "Day"}} Until General Elections
     </div>
   </div>
 
