@@ -5,7 +5,7 @@
   background-color: $col-azul;
   color: $col-white;
   display: flex;
-  font-size: 14px;
+  font-size: 12px;
   padding: 16px;
   text-align: left;
   height: 70px;
@@ -19,13 +19,13 @@
     align-items: center;
     display: flex;
     font-family: $font-montserrat;
-    font-size: 16px;
     font-weight: 600;
     line-height: 1.38;
     width: 60%;
 
     @include media('>=medium') {
       width: 50%;
+      font-size: 16px;
     }
   }
 
@@ -40,6 +40,7 @@
     @include media('>=medium') {
       align-items: center;
       display: flex;
+      font-size: 14px;
       justify-content: flex-end;
       width: 50%;
     }
