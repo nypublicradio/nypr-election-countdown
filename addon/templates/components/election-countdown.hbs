@@ -1,8 +1,11 @@
 {{#if (is-between primaryDayStart primaryDayEnd)}}
 
-  <div class="election-countdown__header">Today is NY State Primary Election Day</div>
+  <div class="election-countdown__left primaries">
+    <div class="election-countdown__header">Today is NY State Primary Election Day</div>
+  </div>
+
   {{#unless promo}}
-    <div class="election-countdown__right">
+    <div class="election-countdown__right primaries">
       <div class="election-countdown__get-updates">
         + {{#link-to 'opt-in'}}Get Updates{{/link-to}}
       </div>
@@ -11,7 +14,7 @@
 
 {{else if (is-before primaryDayStart)}}
 
-  <div class="election-countdown__left">
+  <div class="election-countdown__left primaries">
     <div class="election-countdown__diff">{{diffUntilPrimary}}</div>
     <div class="election-countdown__header">
       {{if (is-before primaryDayEveStart) "Days" "Day"}} Until the NY State Primary Election
@@ -19,7 +22,7 @@
   </div>
 
   {{#unless promo}}
-    <div class="election-countdown__right">
+    <div class="election-countdown__right primaries">
       <div class="election-countdown__get-updates">
         + {{#link-to 'opt-in'}}Get Updates{{/link-to}}
       </div>
@@ -28,7 +31,10 @@
 
 {{else if (is-between electionDayStart electionDayEnd)}}
 
-  <div class="election-countdown__header">Election Day is Today!</div>
+  <div class="election-countdown__left">
+    <div class="election-countdown__header">Election Day is Today!</div>
+  </div>
+
   {{#unless promo}}
     <div class="election-countdown__share-voting-issues">
       + <a href="#">Share Voting Issues</a>
@@ -40,7 +46,10 @@
 
 {{else if (is-after electionDayEnd)}}
 
-  <div class="election-countdown__header">Ready for the Next Election?</div>
+  <div class="election-countdown__left">
+    <div class="election-countdown__header">Ready for the Next Election?</div>
+  </div>
+
   {{#unless promo}}
     <div class="election-countdown__share-your-experience">
       + <a href="#">Share Your Experience</a>
