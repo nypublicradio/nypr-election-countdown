@@ -24,7 +24,7 @@ module('Integration | Component | election-countdown', function(hooks) {
         electionDayStart=to
       }}
     `);
-    assert.dom('.election-countdown').hasText('365 Days Until General Elections + Add to Cal + Get Updates');
+    assert.dom('.election-countdown').hasText('365 Days Until the General Election + Add to Cal + Get Updates');
 
     this.set('to', NOW.clone().add(1, 'days'));
     this.set('electionDayEveStart', NOW.clone().subtract(1, 'days'))
@@ -37,7 +37,7 @@ module('Integration | Component | election-countdown', function(hooks) {
         electionDayStart=to
       }}
     `);
-    assert.dom('.election-countdown').hasText('1 Day Until General Elections + Add to Cal + Get Updates');
+    assert.dom('.election-countdown').hasText('1 Day Until the General Election + Add to Cal + Get Updates');
 
     this.set('to', NOW.clone().subtract(1, 'hours'));
     this.set('electionDayStart', NOW.clone().subtract(1, 'days'))
