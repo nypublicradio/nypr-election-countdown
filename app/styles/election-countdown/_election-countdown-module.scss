@@ -22,7 +22,7 @@
     font-size: 16px;
     font-weight: 600;
     line-height: 1.38;
-    width: 60%;
+    width: 62%;
 
     @include media('>=medium') {
       width: 50%;
@@ -31,7 +31,7 @@
 
   &__right {
     line-height: 1.57;
-    width: 40%;
+    width: 38%;
 
     > div {
       margin-left: 24px;
