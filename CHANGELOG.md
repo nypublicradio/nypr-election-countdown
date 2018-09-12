@@ -1,5 +1,9 @@
 # nypr-election-countdown Changelog
 
+## 0.2.6
+- [ENHANCEMENT] language update
+- [BUGFIX] fix layout regressions
+
 ## 0.2.5
 - [ENHANCEMENT] misc visual design enhancements for the promo
 
