@@ -87,6 +87,11 @@
   width: 88px;
   height: 88px;
   display: block;
+
+  @include media("<=400px") {
+    width: 64px;
+    height: 64px;
+  }
 }
 
 .election-promo__logo img {
