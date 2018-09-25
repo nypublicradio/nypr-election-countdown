@@ -18,7 +18,7 @@ export default Component.extend({
     this._super(...arguments);
 
     let cookieService = this.get("cookies");
-    if (cookieService.read("hasSeenElectionPromo")) {
+    if (cookieService.read("nypr_hasSeenElectionPromo")) {
       this.set("alreadyShown", true);
     }
 
@@ -31,7 +31,7 @@ export default Component.extend({
   actions: {
     closeModule() {
       let cookieService = this.get("cookies");
-      cookieService.write("hasSeenElectionPromo", true, {path: '/'});
+      cookieService.write("nypr_hasSeenElectionPromo", true, {path: '/'});
       this.set('alreadyShown', true);
     }
   }
