@@ -48,7 +48,7 @@ export default Component.extend({
         // Success response
         if (res.status === 200 || res.status === 201) {
           let cookieService = this.get("cookies");
-          cookieService.write("hasSeenElectionPromo", true, {path: '/'});
+          cookieService.write("nypr_hasSeenElectionPromo", true, {path: '/'});
           return {emailSuccess: true, 'changeset.legalChecked': false};
         }
         // Error response
