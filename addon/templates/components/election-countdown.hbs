@@ -1,14 +1,11 @@
 {{#if (is-between electionDayStart electionDayEnd)}}
 
   <div class="election-countdown__left">
-    <div class="election-countdown__header">Election Day is Today!</div>
+    <div class="election-countdown__header election-countdown__header-small">Today is Election Day. NJ polls close at 8 p.m. NY polls close at 9 p.m.</div>
   </div>
   {{#unless promo}}
     <div class="election-countdown__share-voting-issues">
-      + <a href="#">Share Voting Issues</a>
-    </div>
-    <div class="election-countdown__find-polling-places">
-      + <a href="#">Find Polling Place</a>
+      + {{#link-to 'voter-guide'}}Get the Voting Guide{{/link-to}}
     </div>
   {{/unless}}
 

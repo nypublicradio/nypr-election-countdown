@@ -146,6 +146,12 @@
     font-weight: bold;
     margin-right: 5px;
   }
+
+  .election-countdown__header-small {
+    @include media("<medium") {
+      font-size: 11px;
+    }
+  }
 }
 
 .promo-opt-in {
