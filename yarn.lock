@@ -6215,8 +6215,9 @@ nypr-audio-services@>=0.4.0:
     nypr-ui ">=0.3.0"
 
 nypr-countdown@^0.1.0:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/nypr-countdown/-/nypr-countdown-0.1.1.tgz#dedbcf4be4318e19862cf3921b88ba870e6f2492"
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/nypr-countdown/-/nypr-countdown-0.1.2.tgz#4582f2f00abc914fa69a5b273122e54bf5ea7a43"
+  integrity sha512-BwxK3/zdRrlWTxbSK/IRy8Vt1I+xVRoN4okkmIQcpK9J3rY53A7In0AP7++bxhyxf8/GAFWJL7SYGBi/2j2ypQ==
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
