@@ -1,5 +1,9 @@
 # nypr-election-countdown Changelog
 
+## 0.2.11
+- [CHORE] bump `nypr-countdown` to fix date roll overs
+- [CHORE] clean up dummy app routes
+
 ## 0.2.6
 - [ENHANCEMENT] language update
 - [BUGFIX] fix layout regressions
