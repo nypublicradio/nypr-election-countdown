@@ -104,7 +104,7 @@
   font-family: $font-montserrat;
   font-size: 21px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 0;
   line-height: 1.2;
 
   @include media(">=medium") {
@@ -117,6 +117,7 @@
   @include body-font;
   display: flex;
   align-items: center;
+  margin-top: 10px;
 }
 
 .election-promo__countdown svg {

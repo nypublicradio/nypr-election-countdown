@@ -12,9 +12,10 @@
 
     <div class="election-promo__top-copy">
       <p class="election-promo__news">
-        {{chunkContent}}
+        {{{chunkContent}}}
       </p>
 
+      {{#if (is-before electionDayStart)}}
       <a href="https://elections.wnyc.org/voter-guide?utm_medium=partnersite&utm_source={{utmSource}}&utm_campaign=globalmidtermspromo" target="_blank">
       {{election-countdown
         unit='days'
@@ -23,6 +24,7 @@
         arrow=true
         class="election-promo__countdown"}}
       </a>
+      {{/if}}
     </div>
   </div>
 </div>

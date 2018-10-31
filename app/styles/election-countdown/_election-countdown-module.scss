@@ -48,6 +48,15 @@
     }
   }
 
+  &__post-election-header {
+    width: 100%;
+    justify-content: center;
+
+    > div {
+      text-align: center;
+    }
+  }
+
   &__diff {
     font-size: 44px;
     line-height: .5;
