@@ -1,21 +1,55 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { module, test } from "qunit";
+import { setupRenderingTest } from "ember-qunit";
+import { render } from "@ember/test-helpers";
+import hbs from "htmlbars-inline-precompile";
+import Pretender from "pretender";
 
-import moment from 'moment';
+import moment from "moment";
 
-const TIMEZONE = 'America/New_York';
+const TIMEZONE = "America/New_York";
 
-module('Integration | Component | election-countdown', function(hooks) {
+const CHUNK_RESPONSE = {
+  data: {
+    type: "chunk",
+    id: "875272",
+    attributes: {
+      content: "Example chunk text",
+      slug: "election-hub-countdown-text"
+    }
+  }
+};
+
+module("Integration | Component | election-countdown", function(hooks) {
   setupRenderingTest(hooks);
 
-  test('usage', async function(assert) {
-    const NOW = moment().tz(TIMEZONE); // today
-    const ONE_YEAR_FROM_NOW = NOW.clone().add(1, 'year');
+  hooks.beforeEach(function() {
+    this.server = new Pretender(function() {
+      this.get(
+        "https://api.demo.nypr.digital/api/v3/chunks/election-hub-countdown-text/",
+        () => {
+          return [
+            200,
+            { "Content-Type": "application/json" },
+            JSON.stringify(CHUNK_RESPONSE)
+          ];
+        }
+      );
+    });
+  });
 
-    this.set('from', NOW);
-    this.set('to', ONE_YEAR_FROM_NOW);
+  hooks.afterEach(function() {
+    this.server.shutdown();
+  });
+
+  test("usage", async function(assert) {
+    let NOW = moment().tz(TIMEZONE); // today
+    let ONE_YEAR_FROM_NOW = NOW.clone().add(1, "year");
+    this.set("from", NOW);
+    this.set("to", ONE_YEAR_FROM_NOW);
+    this.set(
+      "electionDayEveStart",
+      ONE_YEAR_FROM_NOW.clone().subtract(1, "days")
+    );
     await render(hbs`
       {{election-countdown
         from=from
@@ -24,10 +58,15 @@ module('Integration | Component | election-countdown', function(hooks) {
         electionDayStart=to
       }}
     `);
-    assert.dom('.election-countdown').hasText('365 Days Until the General Election + Add to Cal + Get Updates');
+    assert
+      .dom(".election-countdown")
+      .hasText(
+        "365 Days Until the General Election + Add to Cal + Get Updates"
+      );
 
-    this.set('to', NOW.clone().add(1, 'days'));
-    this.set('electionDayEveStart', NOW.clone().subtract(1, 'days'))
+    this.set("from", NOW);
+    this.set("to", NOW.clone().add(1, "days"));
+    this.set("electionDayEveStart", NOW.clone().subtract(1, "days"));
     await render(hbs`
       {{election-countdown
         from=from
@@ -37,11 +76,13 @@ module('Integration | Component | election-countdown', function(hooks) {
         electionDayStart=to
       }}
     `);
-    assert.dom('.election-countdown').hasText('1 Day Until the General Election + Add to Cal + Get Updates');
+    assert
+      .dom(".election-countdown")
+      .hasText("1 Day Until the General Election + Add to Cal + Get Updates");
 
-    this.set('to', NOW.clone().subtract(1, 'hours'));
-    this.set('electionDayStart', NOW.clone().subtract(1, 'days'))
-    this.set('electionDayEnd', NOW.clone().add(2, 'days'))
+    this.set("to", NOW.clone().subtract(1, "hours"));
+    this.set("electionDayStart", NOW.clone().subtract(1, "days"));
+    this.set("electionDayEnd", NOW.clone().add(2, "days"));
     await render(hbs`
       {{election-countdown
         from=from
@@ -51,18 +92,21 @@ module('Integration | Component | election-countdown', function(hooks) {
         electionDayEnd=electionDayEnd
       }}
     `);
-    assert.dom('.election-countdown').hasText('Election Day is Today! + Share Voting Issues + Find Polling Place');
+    assert.dom(".election-countdown").hasText("Example chunk text");
 
-    this.set('to', NOW.clone().subtract(5, 'days'));
+    this.set("from", NOW.clone().subtract(10, "days"));
+    this.set("to", NOW.clone().subtract(5, "days"));
+    this.set("electionDayStart", NOW.clone().subtract(5, "days"));
+    this.set("electionDayEnd", NOW.clone().subtract(4, "days"));
     await render(hbs`
       {{election-countdown
         from=from
         to=to
         unit='days'
-        electionDayEnd=to
+        electionDayStart=electionDayStart
+        electionDayEnd=electionDayEnd
       }}
     `);
-    assert.dom('.election-countdown').hasText('Ready for the Next Election? + Share Your Experience + Look Up Results');
-
+    assert.dom(".election-countdown").hasText("Example chunk text");
   });
 });
