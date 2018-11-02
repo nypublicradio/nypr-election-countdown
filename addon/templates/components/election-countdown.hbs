@@ -1,3 +1,4 @@
+{{! Global Election Promo }}
 {{#if promo}}
 
   <div class="election-countdown__left">
@@ -13,8 +14,10 @@
     </svg>
   {{/if}}
 
+{{! Election Hub }}
 {{else}}
 
+  {{! Pre-Election Day }}
   {{#if (is-before electionDayStart)}}
     <div class="election-countdown__left">
       <div class="election-countdown__diff">{{diff}}</div>
@@ -37,11 +40,21 @@
         <path fill-rule="evenodd" d="M.123 11.833c-.276-.313 0-.588 0-.588l4.73-5.382L.348.735S.112.413.364.127s.603 0 .603 0L6 5.872l-5.317 6.05s-.285.225-.56-.089z"/>
       </svg>
     {{/if}}
+
+  {{! Election Day and beyond }}
   {{else}}
     <div class="election-countdown__left election-countdown__post-election-header">
+      {{#if (is-between electionDayStart electionPollsClose)}}
       <div class="election-countdown__header">
-        {{{chunkContent}}}
+        It's Election Day. Check the WNYC Voter Guide before heading to the polls.
       </div>
+      {{/if}}
+
+      {{#if (is-after electionPollsClose)}}
+      <div class="election-countdown__header">
+        Polls have closed. Check out the results.
+      </div>
+      {{/if}}
     </div>
   {{/if}}
 

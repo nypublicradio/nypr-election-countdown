@@ -3,30 +3,68 @@
 </div>
 
 <div class="election-promo__top">
-  <div class="election-promo__top-wrapper">
-    <div class="election-promo__logo">
-      <a href="https://elections.wnyc.org/voter-guide?utm_medium=partnersite&utm_source={{utmSource}}&utm_campaign=globalmidtermspromo" target="_blank">
-        <img src="/nypr-election-countdown/assets/images/logo.png">
-      </a>
+  {{#if (is-before electionDayStart)}}
+    <div class="election-promo__top-wrapper">
+      <div class="election-promo__logo">
+        <a href="https://elections.wnyc.org/voter-guide?utm_medium=partnersite&utm_source={{utmSource}}&utm_campaign=globalmidtermspromo" target="_blank">
+          <img src="/nypr-election-countdown/assets/images/logo.png">
+        </a>
+      </div>
+
+      <div class="election-promo__top-copy">
+        <p class="election-promo__news">
+          {{{chunkContent}}}
+        </p>
+
+          <a href="https://elections.wnyc.org/voter-guide?utm_medium=partnersite&utm_source={{utmSource}}&utm_campaign=globalmidtermspromo" target="_blank">
+          {{election-countdown
+            unit='days'
+            to=countdownTo
+            promo=true
+            arrow=true
+            class="election-promo__countdown"}}
+          </a>
+      </div>
     </div>
 
-    <div class="election-promo__top-copy">
-      <p class="election-promo__news">
-        {{{chunkContent}}}
-      </p>
+  {{! Election day and beyond }}
+  {{else}}
+    <div class="election-promo__top-wrapper">
+      <div class="election-promo__logo">
+        {{#if (is-before electionPollsClose)}}
+        <a href="https://elections.wnyc.org/voter-guide?utm_medium=partnersite&utm_source={{utmSource}}&utm_campaign=globalmidtermspromo" target="_blank">
+          <img src="/nypr-election-countdown/assets/images/logo.png">
+        </a>
+        {{else}}
+          <a href="https://elections.wnyc.org/2018-results?utm_medium=partnersite&utm_source={{utmSource}}&utm_campaign=globalmidtermspromo" target="_blank">
+            <img src="/nypr-election-countdown/assets/images/logo.png">
+          </a>
+        {{/if}}
+      </div>
 
-      {{#if (is-before electionDayStart)}}
-      <a href="https://elections.wnyc.org/voter-guide?utm_medium=partnersite&utm_source={{utmSource}}&utm_campaign=globalmidtermspromo" target="_blank">
-      {{election-countdown
-        unit='days'
-        to=countdownTo
-        promo=true
-        arrow=true
-        class="election-promo__countdown"}}
-      </a>
-      {{/if}}
+      <div class="election-promo__top-copy">
+        <p class="election-promo__news">
+          {{#if (is-between electionDayStart electionPollsClose)}}
+            <a href="http://elections.wnyc.org/voter-guide/?utm_medium=partnersite&utm_source=wnyc&utm_campaign=globalmidtermspromo" target="_blank">
+              It's Election Day. Check the WNYC Voter Guide before heading to the polls.
+            </a>
+          {{/if}}
+
+          {{#if (is-between electionPollsClose electionDayEnd)}}
+            <a href="http://elections.wnyc.org/2018-results/?utm_medium=partnersite&utm_source=wnyc&utm_campaign=globalmidtermspromo" target="_blank">
+              Polls have closed. Check out the results.
+            </a>
+          {{/if}}
+
+          {{#if (is-after electionDayEnd)}}
+            <a href="http://elections.wnyc.org/?utm_medium=partnersite&utm_source=wnyc&utm_campaign=globalmidtermspromo" target="_blank">
+              Check out midterm results and our complete election coverage.
+            </a>
+          {{/if}}
+        </p>
+      </div>
     </div>
-  </div>
+  {{/if}}
 </div>
 
 {{election-promo/opt-in

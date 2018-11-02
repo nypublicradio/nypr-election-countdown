@@ -41,72 +41,130 @@ module("Integration | Component | election-countdown", function(hooks) {
     this.server.shutdown();
   });
 
-  test("usage", async function(assert) {
-    let NOW = moment().tz(TIMEZONE); // today
-    let ONE_YEAR_FROM_NOW = NOW.clone().add(1, "year");
-    this.set("from", NOW);
-    this.set("to", ONE_YEAR_FROM_NOW);
-    this.set(
-      "electionDayEveStart",
-      ONE_YEAR_FROM_NOW.clone().subtract(1, "days")
-    );
-    await render(hbs`
-      {{election-countdown
-        from=from
-        to=to
-        unit='days'
-        electionDayStart=to
-      }}
-    `);
-    assert
-      .dom(".election-countdown")
-      .hasText(
-        "365 Days Until the General Election + Add to Cal + Get Updates"
-      );
+  test("one day before election day", async function(assert) {
+    let NOW = moment().tz(TIMEZONE);
+    let TODAY = moment(`${NOW.format('MM-DD-YYY')} 00:00:00`);
+    let ELECTION_DAY = TODAY.clone().add(1, "days");
+    let ELECTION_DAY_EVE_START = NOW.clone().subtract(5, "minutes");
+    let ELECTION_POLLS_CLOSE = TODAY.clone().add(1, "days").add(21, "hours");
+    let DAY_AFTER_ELECTION = NOW.clone().add(2, "days");
 
-    this.set("from", NOW);
-    this.set("to", NOW.clone().add(1, "days"));
-    this.set("electionDayEveStart", NOW.clone().subtract(1, "days"));
+    this.set("from", TODAY);
+    this.set("to", ELECTION_DAY);
+    this.set("electionDayStart", ELECTION_DAY);
+    this.set("electionDayEveStart", ELECTION_DAY_EVE_START);
+    this.set("electionPollsClose", ELECTION_POLLS_CLOSE);
+    this.set("electionDayEnd", DAY_AFTER_ELECTION);
+
     await render(hbs`
       {{election-countdown
         from=from
         to=to
         unit='days'
+        electionDayStart=electionDayStart
         electionDayEveStart=electionDayEveStart
-        electionDayStart=to
+        electionPollsClose=electionPollsClose
+        electionDayEnd=electionDayEnd
       }}
     `);
+
     assert
-      .dom(".election-countdown")
-      .hasText("1 Day Until the General Election + Add to Cal + Get Updates");
+      .dom(".election-countdown__left")
+      .hasText(
+        "1 Day Until the General Election"
+      );
+  });
 
-    this.set("to", NOW.clone().subtract(1, "hours"));
-    this.set("electionDayStart", NOW.clone().subtract(1, "days"));
-    this.set("electionDayEnd", NOW.clone().add(2, "days"));
+  test("early election day, before polls close", async function(assert) {
+    let NOW = moment().tz(TIMEZONE);
+    let TODAY = moment(`${NOW.format('MM-DD-YYY')} 00:00:00`);
+    let ELECTION_DAY = NOW.clone().subtract(1, "hours");
+    let ELECTION_POLLS_CLOSE = NOW.clone().add(1, "hours");
+    let DAY_AFTER_ELECTION = TODAY.clone().add(1, "days");
+
+    this.set("from", TODAY);
+    this.set("to", ELECTION_DAY);
+    this.set("electionDayStart", ELECTION_DAY);
+    this.set("electionPollsClose", ELECTION_POLLS_CLOSE);
+    this.set("electionDayEnd", DAY_AFTER_ELECTION);
+
     await render(hbs`
       {{election-countdown
         from=from
         to=to
         unit='days'
         electionDayStart=electionDayStart
+        electionPollsClose=electionPollsClose
         electionDayEnd=electionDayEnd
       }}
     `);
-    assert.dom(".election-countdown").hasText("Example chunk text");
 
-    this.set("from", NOW.clone().subtract(10, "days"));
-    this.set("to", NOW.clone().subtract(5, "days"));
-    this.set("electionDayStart", NOW.clone().subtract(5, "days"));
-    this.set("electionDayEnd", NOW.clone().subtract(4, "days"));
+    assert
+      .dom(".election-countdown__left")
+      .hasText(
+        "It's Election Day. Check the WNYC Voter Guide before heading to the polls."
+      );
+  });
+
+  test("election day, between polls close and EOD", async function(assert) {
+    let NOW = moment().tz(TIMEZONE);
+    let TODAY = moment(`${NOW.format('MM-DD-YYY')} 00:00:00`);
+    let ELECTION_DAY = NOW.clone();
+    let ELECTION_POLLS_CLOSE = NOW.clone().subtract(1, "hours");
+    let DAY_AFTER_ELECTION = TODAY.clone().add(1, "days");
+
+    this.set("from", TODAY);
+    this.set("to", ELECTION_DAY);
+    this.set("electionDayStart", ELECTION_DAY);
+    this.set("electionPollsClose", ELECTION_POLLS_CLOSE);
+    this.set("electionDayEnd", DAY_AFTER_ELECTION);
+
     await render(hbs`
       {{election-countdown
         from=from
         to=to
         unit='days'
         electionDayStart=electionDayStart
+        electionPollsClose=electionPollsClose
         electionDayEnd=electionDayEnd
       }}
     `);
-    assert.dom(".election-countdown").hasText("Example chunk text");
+
+    assert
+      .dom(".election-countdown__left")
+      .hasText(
+        "Polls have closed. Check out the results."
+      );
+  });
+
+  test("day after election", async function(assert) {
+    let NOW = moment().tz(TIMEZONE);
+    let TODAY = moment(`${NOW.format('MM-DD-YYY')} 00:00:00`);
+    let ELECTION_DAY = NOW.clone();
+    let ELECTION_POLLS_CLOSE = NOW.clone().subtract(2, "days");
+    let DAY_AFTER_ELECTION = TODAY.clone().subtract(1, "days");
+
+    this.set("from", TODAY);
+    this.set("to", ELECTION_DAY);
+    this.set("electionDayStart", ELECTION_DAY);
+    this.set("electionPollsClose", ELECTION_POLLS_CLOSE);
+    this.set("electionDayEnd", DAY_AFTER_ELECTION);
+
+    await render(hbs`
+      {{election-countdown
+        from=from
+        to=to
+        unit='days'
+        electionDayStart=electionDayStart
+        electionPollsClose=electionPollsClose
+        electionDayEnd=electionDayEnd
+      }}
+    `);
+
+    assert
+      .dom(".election-countdown__left")
+      .hasText(
+        "Polls have closed. Check out the results."
+      );
   });
 });
