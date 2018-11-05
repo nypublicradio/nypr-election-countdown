@@ -43,13 +43,12 @@ module("Integration | Component | election-countdown", function(hooks) {
 
   test("one day before election day", async function(assert) {
     let NOW = moment().tz(TIMEZONE);
-    let TODAY = moment(`${NOW.format('MM-DD-YYY')} 00:00:00`);
-    let ELECTION_DAY = TODAY.clone().add(1, "days");
+    let ELECTION_DAY = NOW.clone().add(1, "days");
     let ELECTION_DAY_EVE_START = NOW.clone().subtract(5, "minutes");
-    let ELECTION_POLLS_CLOSE = TODAY.clone().add(1, "days").add(21, "hours");
+    let ELECTION_POLLS_CLOSE = NOW.clone().add(1, "days").add(21, "hours");
     let DAY_AFTER_ELECTION = NOW.clone().add(2, "days");
 
-    this.set("from", TODAY);
+    this.set("from", NOW);
     this.set("to", ELECTION_DAY);
     this.set("electionDayStart", ELECTION_DAY);
     this.set("electionDayEveStart", ELECTION_DAY_EVE_START);
