@@ -98,7 +98,7 @@ module("Integration | Component | election-promo", function(hooks) {
     assert
       .dom(".election-promo__top-copy")
       .hasText(
-        "Today is Election Day. Check the WNYC Voter Guide before heading to the polls."
+        "Today is Election Day. Check out the WNYC Voter Guide."
       );
   });
 
@@ -158,7 +158,7 @@ module("Integration | Component | election-promo", function(hooks) {
     assert
       .dom(".election-promo__top-copy")
       .hasText(
-        "Check out midterm results and complete 2018 election coverage."
+        "Check out midterm results and our complete election coverage."
       );
   });
 });
