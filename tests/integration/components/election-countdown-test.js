@@ -101,7 +101,7 @@ module("Integration | Component | election-countdown", function(hooks) {
     assert
       .dom(".election-countdown__left")
       .hasText(
-        "It's Election Day. Check the WNYC Voter Guide before heading to the polls."
+        "Today is Election Day. Check out the WNYC Voter Guide."
       );
   });
 

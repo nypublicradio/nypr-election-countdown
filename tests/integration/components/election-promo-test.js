@@ -98,7 +98,7 @@ module("Integration | Component | election-promo", function(hooks) {
     assert
       .dom(".election-promo__top-copy")
       .hasText(
-        "It's Election Day. Check the WNYC Voter Guide before heading to the polls."
+        "Today is Election Day. Check the WNYC Voter Guide before heading to the polls."
       );
   });
 
@@ -134,7 +134,7 @@ module("Integration | Component | election-promo", function(hooks) {
 
   test("election promo, day after election", async function(assert) {
     let NOW = moment().tz(TIMEZONE);
-    let TODAY = moment(`${NOW.format('MM-DD-YYY')} 00:00:00`);
+    let TODAY = moment(`${NOW.format('MM-DD-YYYY')} 00:00:00`);
     let ELECTION_DAY = NOW.clone();
     let ELECTION_POLLS_CLOSE = NOW.clone().subtract(2, "days");
     let DAY_AFTER_ELECTION = TODAY.clone().subtract(1, "days");
@@ -158,7 +158,7 @@ module("Integration | Component | election-promo", function(hooks) {
     assert
       .dom(".election-promo__top-copy")
       .hasText(
-        "Polls have closed. Check out the results."
+        "Check out midterm results and complete 2018 election coverage."
       );
   });
 });
