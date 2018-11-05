@@ -46,17 +46,13 @@
     <div class="election-countdown__left election-countdown__post-election-header">
       {{#if (is-between electionDayStart electionPollsClose)}}
       <div class="election-countdown__header">
-        <a href="/voter-guide/">
-          It's Election Day. Check the WNYC Voter Guide before heading to the polls.
-        </a>
+        Today is Election Day. <a href="/voter-guide/">Check out the WNYC Voter Guide.</a>
       </div>
       {{/if}}
 
       {{#if (is-after electionPollsClose)}}
       <div class="election-countdown__header">
-        <a href="/results">
-          Polls have closed. Check out the results.
-        </a>
+        Polls have closed. <a href="/results">Check out the results.</a>
       </div>
       {{/if}}
     </div>
