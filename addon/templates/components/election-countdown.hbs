@@ -1,32 +1,5 @@
-{{#if (is-between electionDayStart electionDayEnd)}}
-
-  <div class="election-countdown__left">
-    <div class="election-countdown__header">Election Day is Today!</div>
-  </div>
-  {{#unless promo}}
-    <div class="election-countdown__share-voting-issues">
-      + <a href="#">Share Voting Issues</a>
-    </div>
-    <div class="election-countdown__find-polling-places">
-      + <a href="#">Find Polling Place</a>
-    </div>
-  {{/unless}}
-
-{{else if (is-after electionDayEnd)}}
-
-  <div class="election-countdown__left">
-    <div class="election-countdown__header">Ready for the Next Election?</div>
-  </div>
-  {{#unless promo}}
-    <div class="election-countdown__share-your-experience">
-      + <a href="#">Share Your Experience</a>
-    </div>
-    <div class="election-countdown__look-up-results">
-      + <a href="#">Look Up Results</a>
-    </div>
-  {{/unless}}
-
-{{else if (is-before electionDayStart)}}
+{{! Global Election Promo }}
+{{#if promo}}
 
   <div class="election-countdown__left">
     <div class="election-countdown__diff">{{diff}}</div>
@@ -35,7 +8,24 @@
     </div>
   </div>
 
-  {{#unless promo}}
+  {{#if arrow}}
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 12">
+      <path fill-rule="evenodd" d="M.123 11.833c-.276-.313 0-.588 0-.588l4.73-5.382L.348.735S.112.413.364.127s.603 0 .603 0L6 5.872l-5.317 6.05s-.285.225-.56-.089z"/>
+    </svg>
+  {{/if}}
+
+{{! Election Hub }}
+{{else}}
+
+  {{! Pre-Election Day }}
+  {{#if (is-before electionDayStart)}}
+    <div class="election-countdown__left">
+      <div class="election-countdown__diff">{{diff}}</div>
+      <div class="election-countdown__header">
+        {{if (is-before electionDayEveStart) "Days" "Day"}} Until the General Election
+      </div>
+    </div>
+
     <div class="election-countdown__right">
       <div class="election-countdown__add-to-cal">
         + <a href="{{calendarLink}}" download="Midterm Elections 2018 calendar event">Add to Cal</a>
@@ -44,12 +34,28 @@
         + {{#link-to 'opt-in'}}Get Updates{{/link-to}}
       </div>
     </div>
-  {{/unless}}
 
-  {{#if arrow}}
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 12">
-      <path fill-rule="evenodd" d="M.123 11.833c-.276-.313 0-.588 0-.588l4.73-5.382L.348.735S.112.413.364.127s.603 0 .603 0L6 5.872l-5.317 6.05s-.285.225-.56-.089z"/>
-    </svg>
+    {{#if arrow}}
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 12">
+        <path fill-rule="evenodd" d="M.123 11.833c-.276-.313 0-.588 0-.588l4.73-5.382L.348.735S.112.413.364.127s.603 0 .603 0L6 5.872l-5.317 6.05s-.285.225-.56-.089z"/>
+      </svg>
+    {{/if}}
+
+  {{! Election Day and beyond }}
+  {{else}}
+    <div class="election-countdown__left election-countdown__post-election-header">
+      {{#if (is-between electionDayStart electionPollsClose)}}
+      <div class="election-countdown__header">
+        Today is Election Day. <a href="/voter-guide/">Check out the WNYC Voter Guide.</a>
+      </div>
+      {{/if}}
+
+      {{#if (is-after electionPollsClose)}}
+      <div class="election-countdown__header">
+        Polls have closed. <a href="/results">Check out the results.</a>
+      </div>
+      {{/if}}
+    </div>
   {{/if}}
 
 {{/if}}
