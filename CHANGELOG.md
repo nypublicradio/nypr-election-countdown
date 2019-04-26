@@ -1,5 +1,8 @@
 # nypr-election-countdown Changelog
 
+## 0.2.13
+- [ENHANCEMENT] Use more accessible nypr-ui ^0.5.0
+
 ## 0.2.12
 - [ENHANCEMENT] adds scheduled future states for election hub/global promo
 
