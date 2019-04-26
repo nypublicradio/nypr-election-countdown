@@ -36,7 +36,7 @@
     "moment-timezone": "^0.5.20",
     "nypr-countdown": "^0.1.0",
     "nypr-publisher-lib": ">=0.4.2",
-    "nypr-ui": "^0.4.2"
+    "nypr-ui": "^0.5.0"
   },
   "devDependencies": {
     "@types/ember": "^2.8.32",
