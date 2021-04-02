@@ -1,5 +1,9 @@
 # nypr-election-countdown Changelog
 
+## 0.2.14
+
+- [CHORE] upgrade `nypr-publisher-lib`
+
 ## 0.2.13
 - [ENHANCEMENT] Use more accessible nypr-ui ^0.5.0
 
